@@ -38,6 +38,9 @@
     ]
   },
   "devDependencies": {
+    "husky": "^4.3.7",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.2",
     "prop-types": "^15.7.2"
   }
 }
