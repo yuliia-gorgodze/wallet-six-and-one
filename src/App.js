@@ -1,16 +1,13 @@
+import React, { Suspense } from 'react';
+import { Switch } from 'react-router-dom';
+import Navigation from './components/Navigation';
 
-import React, { Suspense} from 'react';
-import { Switch, BrowserRouter } from 'react-router-dom';
-import Navigation from './components/Navigation'
-
- export default function App () {
+export default function App() {
   return (
-          <Suspense fallback={<p>Загружаем.... </p>}>
-            <BrowserRouter>
-            <Switch>
-           <Navigation/>
-           </Switch>
-           </BrowserRouter>
-          </Suspense>
-        );
- }
+    <Suspense fallback={<p>Загружаем.... </p>}>
+      <Switch>
+        <Navigation />
+      </Switch>
+    </Suspense>
+  );
+}
