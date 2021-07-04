@@ -1,55 +1,67 @@
 :root {
-	--primary-color: #000000;
-	--text-grey-color: #BDBDBD;
-	--dg-button-color: #24CCA7;
-	--text-pink-color: #FF6596;
-	--bg-color-primary:  rgba(255, 255, 255, 0.4);
-	--bg-color-secondary: #FFFFFF;
-	--bg-form-privat: #4A56E2;
+  --primary-color: #000000;
+  --text-grey-color: #bdbdbd;
+  --dg-button-color: #24cca7;
+  --text-pink-color: #ff6596;
+  --bg-color-primary: rgba(255, 255, 255, 0.4);
+  --bg-color-secondary: #ffffff;
+  --bg-form-privat: #4a56e2;
+}
+
+@font-face {
+  font-family: 'Circe-regular';
+  src: url('../src/fonts/Circe-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Circe-bold';
+  src: url('../src/fonts/Circe-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url('../src/fonts/Poppins-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url('../src/fonts/Poppins-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+.container {
+  width: 280px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 688px;
   }
-
-
-
-@font-face {
-	font-family: 'Circe-regular';
-	src:url('../src/fonts/Circe-Regular.ttf');
-	font-weight: normal;
-	font-style: normal;
 }
 
-@font-face {
-	font-family: 'Circe-bold';
-	src:url('../src/fonts/Circe-Bold.ttf');
-	font-weight: bold;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Poppins-Bold';
-	src:url('../src/fonts/Poppins-Bold.ttf');
-	font-weight: bold;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Poppins-Regular';
-	src:url('../src/fonts/Poppins-Regular.ttf');
-	font-weight: normal;
-	font-style: normal;
-}
-
-   a{
-	   text-decoration: none;
-   }
-  ul {
-	list-style: none;
-	padding: 0;
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 1110px;
   }
-
-  h1,
-  h2,
-  h3 {
-	margin: 0;
-
-  }
-
-
-
+}
