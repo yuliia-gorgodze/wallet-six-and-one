@@ -1,9 +1,13 @@
-const DashboardPage= () => {
+import React from 'react';
+import Balance from '../components/Balance';
 
-    return (<> 
-      <h2>DashboardPage</h2>
-    </>)
-}
+const DashboardPage = () => {
+  return (
+    <>
+      <h2>Dashboard страница</h2>
+      <Balance />
+    </>
+  );
+};
 
-
-export default DashboardPage
+export default DashboardPage;

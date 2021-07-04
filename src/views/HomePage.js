@@ -1,9 +1,13 @@
-const HomePage= () => {
+import React from 'react';
+import Balance from '../components/Balance';
 
-    return (<> 
+const HomePage = () => {
+  return (
+    <>
       <h2>Домашняя страница</h2>
-    </>)
-}
+      <Balance />
+    </>
+  );
+};
 
-
-export default HomePage
+export default HomePage;
