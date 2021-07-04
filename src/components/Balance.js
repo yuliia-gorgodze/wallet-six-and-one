@@ -11,9 +11,9 @@ export default function Balance() {
   }, [dispatch]);
   const amount = useSelector(getBalance);
   return (
-    <section className={`${style.balance}`}>
+    <div className={`${style.balance}`}>
       <h2 className={style.balance__title}>Ваш баланс</h2>
       <h3 className={style.balance__amount}>&#8372; {amount}</h3>
-    </section>
+    </div>
   );
 }
