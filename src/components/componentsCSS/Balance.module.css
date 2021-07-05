@@ -6,7 +6,7 @@
 }
 
 .balance__title {
-  font-family: Circe;
+  font-family: 'Circe-regular';
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -16,7 +16,7 @@
 }
 
 .balance__amount {
-  font-family: Poppins;
+  font-family: 'Poppins-Bold';
   font-style: normal;
   font-weight: 700;
   font-size: 30px;

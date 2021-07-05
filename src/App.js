@@ -1,13 +1,24 @@
 import React, { Suspense } from 'react';
-import { Switch } from 'react-router-dom';
-import Navigation from './components/Navigation';
+import { Route, Switch } from 'react-router-dom';
+import Header from './components/Header';
+import Home from './views/HomePage';
+import RegistrationPage from './views/RegistrationPage';
+import LoginPage from './views/LoginPage';
+import DashboardPage from './views/DashboardPage';
+import routes from './routes';
 
 export default function App() {
   return (
-    <Suspense fallback={<p>Загружаем.... </p>}>
-      <Switch>
-        <Navigation />
-      </Switch>
-    </Suspense>
+    <>
+      <Header />
+      <Suspense fallback={<p>Загружаем.... </p>}>
+        <Switch>
+          <Route path={routes.home} exact component={Home} />
+          <Route path={routes.dashboard} component={DashboardPage} />
+          <Route path={routes.login} component={LoginPage} />
+          <Route path={routes.registration} component={RegistrationPage} />
+        </Switch>
+      </Suspense>
+    </>
   );
 }
