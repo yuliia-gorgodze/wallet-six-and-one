@@ -1,19 +1,35 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchBalance } from '../redux/finance/finance-operations';
-import { getBalance } from '../redux/finance/finance-selectors';
-import style from './componentsCSS/Balance.module.css';
+import moment from 'moment';
 
-export default function Balance() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchBalance());
-  }, [dispatch]);
-  const amount = useSelector(getBalance);
-  return (
-    <div className={`${style.balance}`}>
-      <h2 className={style.balance__title}>Ваш баланс</h2>
-      <h3 className={style.balance__amount}>&#8372; {amount}</h3>
-    </div>
-  );
-}
+import { fetchExchange } from '../../helpers/exchangeApiService';
+import { getTime, getCount } from './exchangeSelectors';
+
+import {
+  loadExchangeStart,
+  loadExchangeSuccess,
+  loadExchangeError,
+} from './exchangeActions';
+
+const fixTo100 = number => Math.round(number * 100) / 100;
+
+export default () => (dispatch, getState) => {
+  const state = getState();
+  const stateTime = getTime(state);
+  const condTime = moment().subtract(3, 'm').valueOf();
+
+  if (!getCount(state) && stateTime < condTime) return;
+
+  dispatch(loadExchangeStart());
+  console.log('here');
+
+  fetchExchange()
+    .then(response => {
+      console.log(response);
+      const currencies = {};
+      response.data.forEach(({ ccy, buy, sale }) => {
+        currencies[ccy] = { buy: fixTo100(buy), sale: fixTo100(sale) };
+      });
+
+      dispatch(loadExchangeSuccess(currencies));
+    })
+    .catch(error => dispatch(loadExchangeError(error)));
+};
