@@ -5,6 +5,7 @@ import Home from './views/HomePage';
 import RegistrationPage from './views/RegistrationPage';
 import LoginPage from './views/LoginPage';
 import DashboardPage from './views/DashboardPage';
+import PublicRoute from './components/PublicRoute';
 import routes from './routes';
 
 export default function App() {
@@ -15,8 +16,22 @@ export default function App() {
         <Switch>
           <Route path={routes.home} exact component={Home} />
           <Route path={routes.dashboard} component={DashboardPage} />
-          <Route path={routes.login} component={LoginPage} />
-          <Route path={routes.registration} component={RegistrationPage} />
+          <PublicRoute
+            exact
+            path={routes.login}
+            restricted
+            redirectTo={routes.home}
+          >
+            <LoginPage />
+          </PublicRoute>
+          <PublicRoute
+            exact
+            path={routes.registration}
+            restricted
+            redirectTo={routes.home}
+          >
+            <RegistrationPage />
+          </PublicRoute>
         </Switch>
       </Suspense>
     </>

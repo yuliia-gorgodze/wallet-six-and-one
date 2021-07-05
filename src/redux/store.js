@@ -9,9 +9,14 @@ import {
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { finance } from './finance/finance-reducer';
 import { global } from './global/global-reducer';
+import authReducer from './auth/auth-reducer';
 
 const store = configureStore({
-  reducer: { finance, global },
+  reducer: {
+    finance,
+    global,
+    auth: authReducer,
+  },
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware({
     serializableCheck: {

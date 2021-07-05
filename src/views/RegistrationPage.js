@@ -1,9 +1,12 @@
-const RegistrationPage= () => {
+import RegistrationForm from '../components/RegistrationForm';
+import styles from './viewsCSS/RegistrationPage.module.css';
 
-    return (<> 
-      <h2>Страница регистрации</h2>
-    </>)
-}
+const RegistrationPage = () => {
+  return (
+    <div className={styles.page}>
+      <RegistrationForm />
+    </div>
+  );
+};
 
-
-export default RegistrationPage
+export default RegistrationPage;
