@@ -10,12 +10,14 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { finance } from './finance/finance-reducer';
 import { global } from './global/global-reducer';
 import authReducer from './auth/auth-reducer';
+import exchangeReducer from './exchange/exchangeReducer';
 
 const store = configureStore({
   reducer: {
     finance,
     global,
     auth: authReducer,
+    exchange: exchangeReducer,
   },
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware({
