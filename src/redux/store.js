@@ -12,7 +12,7 @@ import exchangeReducer from './exchange/exchangeReducer';
 
 const store = configureStore({
   reducer: {
-    finance: finance,
+    finance,
     exchange: exchangeReducer,
   },
   devTools: process.env.NODE_ENV === 'development',
