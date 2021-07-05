@@ -1,0 +1,102 @@
+.modalLogoutOverlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity ease-in-out 300ms;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+.modalLogoutOverlay_active {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity ease-in-out 300ms;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.modal__title {
+  font-family: 'Circe-regular';
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.buttonsList {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.buttonsList > li:first-child {
+  margin-right: 15px;
+}
+
+.modal__button {
+  font-family: 'Circe-regular';
+  font-size: 15px;
+  padding: 3px 7px;
+  color: var(--bg-form-privat);
+  background: #ffffff;
+  border: 1px solid var(--bg-form-privat);
+  box-sizing: content-box;
+  border-radius: 10px;
+  transition: all ease-in-out 300ms;
+}
+
+.modal__button:hover {
+  cursor: pointer;
+  background: var(--dg-button-color);
+  border-color: var(--dg-button-color);
+  color: #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 20px;
+  }
+
+  .modal__title {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .modal__button {
+    font-size: 17px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .modal {
+    padding: 30px;
+  }
+  .modal__title {
+    margin-bottom: 25px;
+    font-size: 25px;
+  }
+
+  .modal__button {
+    font-size: 22px;
+  }
+}
