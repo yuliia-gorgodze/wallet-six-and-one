@@ -4,6 +4,8 @@ import { setModalLogoutState } from '../redux/global/global-operations';
 import { getModalLogoutState } from '../redux/global/global-selectors';
 import Navigation from './Navigation';
 import ModalLogout from './ModalLogout';
+import style from './componentsCSS/Header.module.css';
+import headerIcons from '../assets/icons/header-icons.svg';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -20,12 +22,30 @@ export default function Header() {
     document.addEventListener('keydown', closeModalByKey);
   });
   return (
-    <header>
+    <>
+      <header className={`${style.header} container`}>
+        <div className={style.logo}>
+          <svg className={style.logo__icon}>
+            <use href={headerIcons + '#wallet'}></use>
+          </svg>
+          <span className={style.logo__text}>Wallet</span>
+        </div>
+        <div className={style.header__info}>
+          <span className={style.header__name}>Имя</span>
+          <button
+            className={style.exitButton}
+            onClick={openModal}
+            type="button"
+          >
+            <svg width="18" height="18">
+              <use href={headerIcons + '#exit'}></use>
+            </svg>
+            <span className={style.exitButton__text}>Выйти</span>
+          </button>
+        </div>
+        <ModalLogout />
+      </header>
       <Navigation />
-      <button onClick={openModal} type="button">
-        Вийти
-      </button>
-      <ModalLogout />
-    </header>
+    </>
   );
 }
