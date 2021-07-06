@@ -8,11 +8,13 @@ import DashboardPage from './views/DashboardPage';
 import PublicRoute from './components/PublicRoute';
 import routes from './routes';
 import ButtonAddTransaction from './components/ButtonAddTransaction';
+import ModalAddTransaction from './components/modalTransaction';
 export default function App() {
   return (
     <>
       <Header />
       <ButtonAddTransaction />
+      <ModalAddTransaction />
       <Suspense fallback={<p>Загружаем.... </p>}>
         <Switch>
           <Route path={routes.home} exact component={Home} />

@@ -1,31 +1,38 @@
 import React from 'react';
-import {
-  FormControl,
-  Input,
-  InputLabel,
-  FormHelperText,
-} from '@material-ui/core';
+import { FormControl, Input, FormHelperText, Modal } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { modalTrancactionIsOpen } from '../redux/modaltransaction/modalTransactionOperations';
+import { IsModalTrasaction } from '../redux/modaltransaction/modalTransactionSelector';
+import style from './componentsCSS/ModalAddTransaction.module.css';
 
-import style from './componentsCSS/ModalLogout.module.css';
-
-export default function ModalLogout() {
+export default function ModalAddTransaction() {
   const dispatch = useDispatch();
   const closeModal = e => {
-    if (e.target.dataset.closemodal) {
-      dispatch(modalTrancactionIsOpen(false));
-    }
+    dispatch(modalTrancactionIsOpen(false));
   };
   return (
-    <div>
-      <FormControl>
-        <InputLabel htmlFor="my-input">Email address</InputLabel>
+    <Modal className={style.modal} open={useSelector(IsModalTrasaction)}>
+      <FormControl className={style.form}>
+        <button
+          onClick={closeModal}
+          type="submit"
+          className={style.clouseButton}
+        ></button>
+        <span className={style.text}>Добавить транзакцию</span>
+        <input type="checkbox" id="radioButton"></input>
+
         <Input id="my-input" aria-describedby="my-helper-text" />
-        <FormHelperText id="my-helper-text">
-          We'll never share your email.
-        </FormHelperText>
+        <FormHelperText id="my-helper-text">Коментарий</FormHelperText>
+        <button className={`${style.button} ${style.buttonAdd}`}>
+          Добавить
+        </button>
+        <button
+          className={`${style.button} ${style.undo}`}
+          onClick={closeModal}
+        >
+          Отменить
+        </button>
       </FormControl>
-    </div>
+    </Modal>
   );
 }

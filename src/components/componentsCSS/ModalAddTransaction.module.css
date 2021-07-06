@@ -1,0 +1,89 @@
+.form {
+  position: relative;
+  background: #ffffff;
+
+  text-align: center;
+  align-items: center;
+  margin-top: 70px;
+  padding: 20px;
+  width: 320px;
+}
+.modal {
+  display: flex;
+  margin-top: 70px;
+  justify-content: center;
+}
+.button {
+  text-transform: uppercase;
+  border-radius: 20px;
+  border: none;
+  width: 300px;
+  height: 50px;
+}
+.buttonAdd {
+  color: #fff;
+  background-color: var(--dg-button-color);
+  margin-bottom: 20px;
+}
+.undo {
+  width: 300px;
+  height: 50px;
+  border: 1px solid #4a56e2;
+  color: #4a56e2;
+  background-color: #ffffff;
+}
+
+.text {
+  font-family: Poppins;
+
+  font-style: normal;
+  font-weight: 400;
+  line-height: 45px;
+  letter-spacing: 0em;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 767px) {
+  .form {
+    margin-top: 70px;
+  }
+  .text {
+    font-size: 25px;
+  }
+  .clouseButton {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) {
+  .form {
+    padding-top: 40px;
+    padding-right: 40px;
+    padding-left: 40px;
+    width: 540px;
+    height: 540px;
+    margin-top: 90px;
+    border-radius: 20px;
+  }
+  .modal {
+    align-items: center;
+  }
+  .clouseButton {
+    position: absolute;
+    border: none;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    top: 20px;
+    right: 20px;
+    background-image: url(../../assets/icons/buttonModalTransactionClouse.svg);
+  }
+  .text {
+    font-size: 30px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .form {
+    margin-top: 240px;
+  }
+}
