@@ -21,8 +21,10 @@ const register = credentials => async dispatch => {
 
     token.set(response.data.token);
     dispatch(authActions.registerSuccess(response.data));
+    notification.sucess('Успех!');
   } catch (error) {
     dispatch(authActions.registerError(error.message));
+    notification.error('Что-то пошло не так!');
   }
 };
 
@@ -34,8 +36,10 @@ const logIn = credentials => async dispatch => {
 
     token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));
+    notification.sucess('Успех!');
   } catch (error) {
     dispatch(authActions.loginError(error.message));
+    notification.error('Что-то пошло не так!');
   }
 };
 
