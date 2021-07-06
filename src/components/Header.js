@@ -5,10 +5,12 @@ import { getModalLogoutState } from '../redux/global/global-selectors';
 import ModalLogout from './ModalLogout';
 import style from './componentsCSS/Header.module.css';
 import headerIcons from '../assets/icons/header-icons.svg';
+import { authSelectors } from '../redux/auth';
 
 export default function Header() {
   const dispatch = useDispatch();
   const isModalLogoutOpen = useSelector(getModalLogoutState);
+  const userName = useSelector(authSelectors.getUsername);
   const openModal = () => {
     dispatch(setModalLogoutState(true));
   };
@@ -30,7 +32,7 @@ export default function Header() {
           <span className={style.logo__text}>Wallet</span>
         </div>
         <div className={style.header__info}>
-          <span className={style.header__name}>Имя</span>
+          <span className={style.header__name}>{userName}</span>
           <button
             className={style.exitButton}
             onClick={openModal}
