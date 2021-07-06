@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setModalLogoutState } from '../redux/global/global-operations';
 import { getModalLogoutState } from '../redux/global/global-selectors';
-import Navigation from './Navigation';
 import ModalLogout from './ModalLogout';
 import style from './componentsCSS/Header.module.css';
 import headerIcons from '../assets/icons/header-icons.svg';
@@ -45,7 +44,6 @@ export default function Header() {
         </div>
         <ModalLogout />
       </header>
-      <Navigation />
     </>
   );
 }
