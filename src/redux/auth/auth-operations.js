@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authActions from './auth-actions';
+import notification from '../../helpers/react-toastify';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
@@ -20,8 +21,10 @@ const register = credentials => async dispatch => {
 
     token.set(response.data.token);
     dispatch(authActions.registerSuccess(response.data));
+    notification.sucess('Успех!');
   } catch (error) {
     dispatch(authActions.registerError(error.message));
+    notification.error('Что-то пошло не так!');
   }
 };
 
@@ -33,8 +36,10 @@ const logIn = credentials => async dispatch => {
 
     token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));
+    notification.sucess('Успех!');
   } catch (error) {
     dispatch(authActions.loginError(error.message));
+    notification.error('Что-то пошло не так!');
   }
 };
 
@@ -55,5 +60,19 @@ const logIn = credentials => async dispatch => {
 //     }
 //   };
 
+const logOut = () => async dispatch => {
+  dispatch(authActions.logoutRequest());
+
+  try {
+    await axios.post('/users/logout');
+
+    token.unset();
+    dispatch(authActions.logoutSuccess());
+  } catch (error) {
+    dispatch(authActions.logoutError(error.message));
+    notification.error('Что-то пошло не так!');
+  }
+};
+
 // eslint-disable-next-line
-export default { register, logIn };
+export default { register, logIn, logOut };
