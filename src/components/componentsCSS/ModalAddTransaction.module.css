@@ -1,7 +1,6 @@
 .form {
   position: relative;
   background: #ffffff;
-
   text-align: center;
   align-items: center;
   margin-top: 70px;
@@ -41,6 +40,18 @@
   line-height: 45px;
   letter-spacing: 0em;
   margin-bottom: 40px;
+}
+.customCheckbox > input {
+  position: absolute;
+  z-index: -1;
+  opacity: 1;
+}
+.changesContainer {
+  position: relative;
+  width: 80px;
+  height: 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 30px;
 }
 
 @media screen and (max-width: 767px) {
