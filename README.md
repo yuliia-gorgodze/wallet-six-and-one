@@ -4,7 +4,7 @@
 
 ### email: asd123asd@mail.com
 
-### password: asd123asd@mail.com
+### password: asd123asd
 
 # Getting Started with Create React App
 
