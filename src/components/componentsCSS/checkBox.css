@@ -1,0 +1,28 @@
+.addText::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -2px;
+  display: inline-block;
+  background-color: var(--dg-button-color);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  background-image: url(../../assets/icons/addTransaction.svg);
+  width: 44px;
+  height: 44px;
+}
+.addСosts::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -2px;
+  display: inline-block;
+  background-color: #ff6596;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  background-image: url(../../assets/icons/buttonСonsumption.svg);
+  width: 44px;
+  height: 44px;
+}
