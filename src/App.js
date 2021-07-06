@@ -3,10 +3,11 @@ import { Route, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
-import Home from './views/HomePage';
 import RegistrationPage from './views/RegistrationPage';
 import LoginPage from './views/LoginPage';
 import DashboardPage from './views/DashboardPage';
+import StatisticPage from './views/StatisticPage';
+
 import PublicRoute from './components/PublicRoute';
 import ButtonAddTransaction from './components/ButtonAddTransaction';
 
@@ -32,8 +33,8 @@ export default function App() {
 
       <Suspense fallback={<p>Загружаем.... </p>}>
         <Switch>
-          <Route path={routes.home} exact component={Home} />
-          <Route path={routes.dashboard} component={DashboardPage} />
+          <Route path="/" exact component={DashboardPage} />
+          <Route path="/statistic" component={StatisticPage} />
           <PublicRoute
             exact
             path={routes.login}

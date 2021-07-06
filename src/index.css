@@ -65,3 +65,7 @@ h3 {
     width: 1110px;
   }
 }
+.mainPage {
+  display: flex;
+  align-items: flex-start;
+}
