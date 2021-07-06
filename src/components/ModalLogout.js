@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setModalLogoutState } from '../redux/global/global-operations';
 import { getModalLogoutState } from '../redux/global/global-selectors';
 import style from './componentsCSS/ModalLogout.module.css';
+import { authOperations } from '../redux/auth';
 
 export default function ModalLogout() {
   const dispatch = useDispatch();
@@ -26,7 +27,12 @@ export default function ModalLogout() {
         <h2 className={style.modal__title}>Вы действительно хотите выйти?</h2>
         <ul className={style.buttonsList}>
           <li>
-            <button className={style.modal__button} type="button">
+            <button
+              onClick={() => dispatch(authOperations.logOut())}
+              data-closemodal
+              className={style.modal__button}
+              type="button"
+            >
               Да
             </button>
           </li>
