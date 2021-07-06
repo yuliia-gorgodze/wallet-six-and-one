@@ -1,7 +1,16 @@
+import { useDispatch } from 'react-redux';
 import styles from './componentsCSS/ButtonAddTransaction.module.css';
-import svgAddButton from '../assets/icons/addTransaction.svg';
+import { modalTrancactionIsOpen } from '../redux/modaltransaction/modalTransactionOperations';
 export default function ButtonAddTransaction() {
+  const dispatch = useDispatch();
+  const closeModal = e => {
+    dispatch(modalTrancactionIsOpen(true));
+  };
   return (
-    <button className={styles.buttonAddTransaction} type="button"></button>
+    <button
+      onClick={closeModal}
+      className={styles.buttonAddTransaction}
+      type="button"
+    ></button>
   );
 }

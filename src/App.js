@@ -9,6 +9,9 @@ import LoginPage from './views/LoginPage';
 import DashboardPage from './views/DashboardPage';
 import PublicRoute from './components/PublicRoute';
 import ButtonAddTransaction from './components/ButtonAddTransaction';
+
+import ModalAddTransaction from './components/modalTransaction';
+
 import routes from './routes';
 import { authSelectors } from './redux/auth';
 
@@ -24,6 +27,7 @@ export default function App() {
         </>
       )}
 
+      <ModalAddTransaction />
       <Navigation />
 
       <Suspense fallback={<p>Загружаем.... </p>}>
