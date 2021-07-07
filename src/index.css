@@ -60,12 +60,38 @@ h3 {
   }
 }
 
+@media screen and (max-width: 1279px) and (min-width: 768px) {
+  .mainPage {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 @media screen and (min-width: 1280px) {
   .container {
     width: 1110px;
   }
+  .mainPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
 }
+
+@media screen and (max-width: 767px) {
+  .mainPage {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 .mainPage {
   display: flex;
   align-items: flex-start;
+}
+
+body {
+  background-color: rgb(241, 243, 248);
 }
