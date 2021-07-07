@@ -11,15 +11,13 @@ function SideBar() {
   const isTabletOrMobile = useMediaQuery({ maxWidth: 767 });
 
   return (
-    <>
-      <div className={styles.sideBarContainer}>
-        <div className={styles.navBarContainer}>
-          <NavBar />
-          <Balance />
-        </div>
-        {!isTabletOrMobile && <Currency />}
+    <div className={styles.sideBarContainer}>
+      <div className={styles.navBarContainer}>
+        <NavBar />
+        <Balance />
       </div>
-    </>
+      {!isTabletOrMobile && <Currency />}
+    </div>
   );
 }
 

@@ -10,15 +10,12 @@
     margin-left: auto;
     margin-right: auto;
   }
+}
 
-  .icon {
-    /* font-size: xx-large; */
-    background-color: rgb(74, 86, 226);
-    color: white;
-    border-radius: 4px;
-    box-shadow: 4px 4px 8px 0px rgba(110, 120, 231, 0.2);
-    padding: 2px;
-    margin-right: 15px;
+@media screen and (max-width: 1279px) and (min-width: 768px) {
+  .navBar {
+    min-width: 300px;
+    text-align: center;
   }
 }
 
