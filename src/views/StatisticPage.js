@@ -1,17 +1,17 @@
 import React from 'react';
 
 import SideBar from '../components/SideBar';
-import HomeTab from '../components/HomeTab';
+import Statistic from '../components/Statistic';
 
-const DashboardPage = () => {
+const StatisticPage = () => {
   return (
     <>
       <div className="mainPage container">
         <SideBar />
-        <HomeTab />
+        <Statistic />
       </div>
     </>
   );
 };
 
-export default DashboardPage;
+export default StatisticPage;

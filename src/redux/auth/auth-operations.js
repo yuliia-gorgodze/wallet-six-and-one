@@ -4,22 +4,12 @@ import notification from '../../helpers/react-toastify';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
-
 const register = credentials => async dispatch => {
   dispatch(authActions.registerRequest());
 
   try {
     const response = await axios.post('/users/signup', credentials);
 
-    token.set(response.data.token);
     dispatch(authActions.registerSuccess(response.data));
     notification.sucess('Успех!');
   } catch (error) {
@@ -34,7 +24,6 @@ const logIn = credentials => async dispatch => {
   try {
     const response = await axios.post('/users/login', credentials);
 
-    token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));
     notification.sucess('Успех!');
   } catch (error) {
@@ -48,7 +37,6 @@ const logIn = credentials => async dispatch => {
 
 //     if (!persistedToken) return;
 
-//     token.set(persistedToken);
 //     dispatch(authActions.getCurrentUserRequest());
 
 //     try {
@@ -60,13 +48,18 @@ const logIn = credentials => async dispatch => {
 //     }
 //   };
 
-const logOut = () => async dispatch => {
+const logOut = () => async (dispatch, getState) => {
   dispatch(authActions.logoutRequest());
 
   try {
-    await axios.post('/users/logout');
+    await axios.post(
+      '/users/logout',
+      {},
+      {
+        headers: { Authorization: `Bearer ${getState().auth.token}` },
+      },
+    );
 
-    token.unset();
     dispatch(authActions.logoutSuccess());
   } catch (error) {
     dispatch(authActions.logoutError(error.message));
