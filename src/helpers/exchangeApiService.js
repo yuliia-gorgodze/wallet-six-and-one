@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-export const fetchExchange = () => {
-  let result = axios.get(
-    'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11',
-  );
-  console.log(result);
-  return result;
-};
+export function fetchInfo() {
+  return axios
+    .get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
+    .then(result => result.data);
+}
