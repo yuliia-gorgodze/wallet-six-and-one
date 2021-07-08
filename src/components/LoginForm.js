@@ -1,65 +1,70 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { authOperations } from '../redux/auth';
 import styles from './componentsCSS/LoginForm.module.css';
 import routes from '../routes';
-import { authSelectors } from '../redux/auth';
 
-const LoginForm = () => {
+export default function LoginForm() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case 'email':
-        return setEmail(value);
-      case 'password':
-        return setPassword(value);
-      default:
-        return;
-    }
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    dispatch(authOperations.logIn({ email, password }));
-    reset();
-  };
-
-  const reset = () => {
-    setEmail('');
-    setPassword('');
-  };
-
-  const isError = useSelector(authSelectors.getError);
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email('Невалидный email')
+        .required('Поле email обязательно'),
+      password: Yup.string()
+        .min(6, 'Должен состоять минимум из 6 символов')
+        .max(12, 'Не более 12 символов')
+        .required('Поле пароль обязательно'),
+    }),
+    onSubmit: values => {
+      dispatch(
+        authOperations.logIn({
+          email: values.email,
+          password: values.password,
+        }),
+      );
+    },
+  });
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      {isError && <b>Что то пошло не так или пароль меньше 6 символов!</b>}
+    <form onSubmit={formik.handleSubmit} className={styles.form}>
       <label className="form__field">
         <input
           className="form__input"
           type="email"
           name="email"
-          onChange={handleChange}
-          value={email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.email}
           placeholder="E-mail"
           required
         />
+        {formik.touched.email && formik.errors.email ? (
+          <div>{formik.errors.email}</div>
+        ) : null}
       </label>
       <label className="form__field">
         <input
           className="form__input"
           type="password"
           name="password"
-          onChange={handleChange}
-          value={password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.password}
           placeholder="Пароль"
           required
         />
+        {formik.touched.password && formik.errors.password ? (
+          <div>{formik.errors.password}</div>
+        ) : null}
       </label>
       <button className="form__button" type="submit">
         Вход
@@ -67,6 +72,4 @@ const LoginForm = () => {
       <NavLink to={routes.registration}>Регистрация</NavLink>
     </form>
   );
-};
-
-export default LoginForm;
+}
