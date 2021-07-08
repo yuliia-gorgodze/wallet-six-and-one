@@ -133,7 +133,7 @@ export default function RegistrationForm() {
         />
         <CssTextField
           fullWidth
-          id="password"
+          id="passwordConfirmation"
           name="passwordConfirmation"
           type="password"
           label="Пароль"
