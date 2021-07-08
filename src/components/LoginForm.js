@@ -4,8 +4,33 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { authOperations } from '../redux/auth';
-import styles from './componentsCSS/LoginForm.module.css';
+import styles from './componentsCSS/AuthForm.module.css';
 import routes from '../routes';
+
+import TextField from '@material-ui/core/TextField';
+import { withStyles } from '@material-ui/core/styles';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import LockIcon from '@material-ui/icons/Lock';
+import EmailIcon from '@material-ui/icons/Email';
+import headerIcons from '../assets/icons/header-icons.svg';
+
+const CssTextField = withStyles({
+  root: {
+    marginBottom: '40px',
+    '& label.Mui-focused': {
+      color: '#24cca7',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#24cca7',
+    },
+    '& .MuiInput-underline:before': {
+      borderBottomColor: '#bdbdbd',
+    },
+    '& .MuiInput-underline.Mui-error:after': {
+      borderBottomColor: 'red',
+    },
+  },
+})(TextField);
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -31,45 +56,70 @@ export default function LoginForm() {
           password: values.password,
         }),
       );
+      formik.resetForm();
     },
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className={styles.form}>
-      <label className="form__field">
-        <input
-          className="form__input"
-          type="email"
+    <div className={styles.container}>
+      <div className={styles.logo}>
+        <svg className={styles.logo__icon}>
+          <use href={headerIcons + '#wallet'}></use>
+        </svg>
+        <span className={styles.logo__text}>Wallet</span>
+      </div>
+
+      <form onSubmit={formik.handleSubmit} className={styles.form}>
+        <CssTextField
+          fullWidth
+          id="email"
           name="email"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          type="email"
+          label="Email"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <EmailIcon className={styles.form__icon} />
+              </InputAdornment>
+            ),
+          }}
+          placeholder="Введите email"
           value={formik.values.email}
-          placeholder="E-mail"
-          required
-        />
-        {formik.touched.email && formik.errors.email ? (
-          <div>{formik.errors.email}</div>
-        ) : null}
-      </label>
-      <label className="form__field">
-        <input
-          className="form__input"
-          type="password"
-          name="password"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.password}
-          placeholder="Пароль"
-          required
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
         />
-        {formik.touched.password && formik.errors.password ? (
-          <div>{formik.errors.password}</div>
-        ) : null}
-      </label>
-      <button className="form__button" type="submit">
-        Вход
-      </button>
-      <NavLink to={routes.registration}>Регистрация</NavLink>
-    </form>
+        <CssTextField
+          fullWidth
+          id="password"
+          name="password"
+          type="password"
+          label="Пароль"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <LockIcon className={styles.form__icon} />
+              </InputAdornment>
+            ),
+          }}
+          placeholder="Введите пароль"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+        />
+
+        <div className={styles.container__button}>
+          <button className={styles.button__submit} type="submit">
+            Вход
+          </button>
+          <NavLink to={routes.registration} className={styles.button__redirect}>
+            Регистрация
+          </NavLink>
+        </div>
+      </form>
+    </div>
   );
 }

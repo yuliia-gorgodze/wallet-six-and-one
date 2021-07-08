@@ -1,62 +1,139 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { fetchInfo } from '../helpers/exchangeApiService';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@material-ui/core';
+import { useMediaQuery } from 'react-responsive';
+import Navigation from './NavBar';
+import addStyles from '../components/componentsCSS/SideBar.module.css';
+import Loader from 'react-loader-spinner';
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+const useStyles = makeStyles({
+  table: {
+    minWidth: 280,
+    maxWidth: 380,
+    maxHeight: 180,
+    borderRadius: 20,
+  },
 
-import styles from './componentsCSS/Currency.module.css';
+  head: {
+    background: 'rgb(110, 120, 232)',
+    borderBottom: 'none',
+  },
 
-import { getCurrencies } from '../redux/exchange/exchangeSelectors';
-import fetchExchange from '../redux/exchange/exchangeOperations';
+  headers: {
+    fontFamily: 'Prompt, sans-serif',
+    fontWeight: 500,
+    fontSize: 16,
+    paddingTop: 12,
+    paddingBottom: 10,
+    color: 'white',
+    borderBottom: 'none',
+  },
 
-function CurrencyExchange({ currencies }) {
-  const dispatch = useDispatch();
+  body: {
+    background: 'rgb(74, 85, 226)',
+  },
+
+  currency: {
+    fontFamily: 'Poppins, sans-serif',
+    fontWeight: 500,
+    fontSize: 16,
+    color: 'white',
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderBottom: 'none',
+  },
+
+  buy: {
+    fontFamily: 'Poppins, sans-serif',
+    fontWeight: 400,
+    fontSize: 16,
+    color: 'white',
+    borderBottom: 'none',
+  },
+
+  sale: {
+    fontFamily: 'Poppins, sans-serif',
+    fontWeight: 400,
+    fontSize: 16,
+    color: 'white',
+    borderBottom: 'none',
+  },
+});
+
+function CurrencyExchange() {
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 767 });
+  const isDesktopOrTablet = useMediaQuery({ minWidth: 1280 });
+  const styles = useStyles();
+  const [currency, setCurrency] = useState('');
+
   useEffect(() => {
-    dispatch(fetchExchange());
-  }, [dispatch]);
+    const getData = async () => {
+      try {
+        const data = await fetchInfo();
+        setCurrency(data.slice(0, -1));
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getData();
+  }, []);
+
+  console.log(currency);
 
   return (
-    <div className={styles.tableContainer}>
-      <TableContainer>
-        <Paper elevation={5} />
-        <Table aria-label="currency table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">Валюта</TableCell>
-              <TableCell align="center">Покупка</TableCell>
-              <TableCell align="center">Продажа</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {currencies &&
-              Object.keys(currencies).map(currency => (
-                <TableRow key={currency}>
-                  <TableCell component="th" scope="row" align="center">
-                    {currency}
+    <>
+      <div className={addStyles.currencyContainer}>
+        <TableContainer className={styles.table}>
+          {currency.length > 0 ? (
+            <Table size="small" aria-label="a dense table">
+              <TableHead className={styles.head}>
+                <TableRow>
+                  <TableCell className={styles.headers}>Валюта</TableCell>
+                  <TableCell align="center" className={styles.headers}>
+                    Покупка
                   </TableCell>
-                  <TableCell align="center">
-                    {currencies[currency].buy}
-                  </TableCell>
-                  <TableCell align="center">
-                    {currencies[currency].sale}
+                  <TableCell align="center" className={styles.headers}>
+                    Продажа
                   </TableCell>
                 </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+              </TableHead>
+
+              <TableBody className={styles.body}>
+                {currency.map(el => (
+                  <TableRow key={el.ccy}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      align="left"
+                      className={styles.currency}
+                    >
+                      {el.ccy}
+                    </TableCell>
+                    <TableCell align="center" className={styles.buy}>
+                      {Math.floor(el.buy * 100) / 100}
+                    </TableCell>
+                    <TableCell align="center" className={styles.sale}>
+                      {Math.floor(el.sale * 100) / 100}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          ) : (
+            <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+          )}
+        </TableContainer>
+      </div>
+    </>
   );
 }
 
-const mapStateToProps = state => ({
-  currencies: getCurrencies(state),
-});
-
-export default connect(mapStateToProps)(CurrencyExchange);
+export default CurrencyExchange;
