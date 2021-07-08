@@ -1,0 +1,86 @@
+.container {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 100px 20px;
+  background-color: var(--bg-color-secondary);
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.logo__icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: sub;
+}
+
+.logo__text {
+  margin-left: 15px;
+  font-family: 'Poppins-Bold';
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.form__icon {
+  color: var(--text-grey-color);
+}
+
+.container__button {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+  /* height: 50px; */
+  padding: 11px 0;
+  border: 1px solid transparent;
+
+  border-radius: 20px;
+
+  font-family: Circe;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background-color 250ms ease-out, color 250ms ease-out;
+
+  cursor: pointer;
+}
+
+.button + .button {
+  margin-top: 20px;
+}
+
+.button__submit {
+  composes: button;
+  background-color: #24cca7;
+  color: #ffffff;
+}
+
+.button__submit:hover {
+  background-color: #ffffff;
+  color: #24cca7;
+  border: 1px solid #24cca7;
+}
+
+.button__redirect {
+  composes: button;
+  color: #4a56e2;
+  background-color: #ffffff;
+  border: 1px solid #4a56e2;
+}
+
+.button__redirect:hover {
+  background-color: #4a56e2;
+  color: #ffffff;
+}
