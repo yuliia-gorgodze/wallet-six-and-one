@@ -92,6 +92,7 @@ export default function RegistrationForm() {
           placeholder="Введите email"
           value={formik.values.email}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
         />
@@ -111,6 +112,7 @@ export default function RegistrationForm() {
           placeholder="Введите пароль"
           value={formik.values.password}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
@@ -130,6 +132,7 @@ export default function RegistrationForm() {
           placeholder="Подтвердите пароль"
           value={formik.values.passwordConfirmation}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           error={
             formik.touched.passwordConfirmation &&
             Boolean(formik.errors.passwordConfirmation)
@@ -155,6 +158,7 @@ export default function RegistrationForm() {
           placeholder="Ваше имя"
           value={formik.values.name}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           error={formik.touched.name && Boolean(formik.errors.name)}
           helperText={formik.touched.name && formik.errors.name}
         />
