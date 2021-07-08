@@ -31,3 +31,11 @@
     padding-left: 40px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .balance {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+  }
+}
