@@ -13,6 +13,7 @@ import PublicRoute from './components/PublicRoute';
 import ButtonAddTransaction from './components/ButtonAddTransaction';
 
 import ModalAddTransaction from './components/modalTransaction';
+import Spinner from './components/Spinner';
 
 import { useMediaQuery } from 'react-responsive';
 
@@ -22,9 +23,11 @@ import { authSelectors } from './redux/auth';
 export default function App() {
   const isAuth = useSelector(authSelectors.getIsAuthenticated);
   const isTabletOrMobile = useMediaQuery({ maxWidth: 767 });
+  const isLoading = useSelector(authSelectors.getLoading);
 
   return (
     <>
+      {isLoading && <Spinner />}
       {isAuth && (
         <>
           <Header />
@@ -35,7 +38,7 @@ export default function App() {
       <ModalAddTransaction />
       <Navigation />
 
-      <Suspense fallback={<p>Загружаем.... </p>}>
+      <Suspense fallback={<Spinner />}>
         <Switch>
           <Route path="/" exact component={DashboardPage} />
           <Route path="/statistic" component={StatisticPage} />
