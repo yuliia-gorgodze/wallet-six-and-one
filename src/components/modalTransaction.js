@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { FormControl, Modal } from '@material-ui/core';
-
 import { useSelector, useDispatch } from 'react-redux';
+
+import { FormControl, Modal, NativeSelect, MenuItem } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
 import {
   modalTrancactionIsOpen,
   addTrancaction,
 } from '../redux/modaltransaction/modalTransactionOperations';
 import { IsModalTrasaction } from '../redux/modaltransaction/modalTransactionSelector';
 import style from './componentsCSS/ModalAddTransaction.module.css';
+import checkBoxStyles from './componentsCSS/checkBox.css';
 
-import TextField from '@material-ui/core/TextField';
-import { withStyles } from '@material-ui/core/styles';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import checkBoxStyles from './componentsCSS/checkBox.css';
 
 const CssTextField = withStyles({
   root: {
+    '& .MuiMenu': {
+      top: '334px',
+    },
     '& .MuiInputBase-input': {
       fontFamily: 'Circe-regular, sans-serif',
       fontSize: '18px',
@@ -49,7 +53,6 @@ const CssDate = withStyles({
   root: {
     border: 'none',
     '& .MuiInputBase-input': {
-      // color: '#fff', // Text color
       fontFamily: 'Circe-regular, sans-serif',
       fontSize: '18px',
       lineHeight: '1.5',
@@ -76,7 +79,29 @@ const CssDate = withStyles({
     },
   },
 })(TextField);
-
+const CssSelect = withStyles({
+  root: {
+    marginBottom: '40px',
+    '& label': {
+      fontFamily: 'Circe-regular, sans-serif',
+      fontSize: '18px',
+      color: '#BDBDBD',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#24cca7',
+    },
+    '& .MuiInput-underline:before': {
+      borderBottomColor: '#bdbdbd',
+    },
+    '& .MuiInput-underline.Mui-error:after': {
+      borderBottomColor: 'red',
+    },
+    '& .MuiFormHelperText-root.Mui-error': {
+      fontFamily: 'Circe-regular, sans-serif',
+      fontSize: '15px',
+    },
+  },
+})(TextField);
 export default function ModalAddTransaction() {
   const [checkBox, setcheckBox] = useState(false);
   const [transaction, setTransaction] = useState('');
@@ -104,6 +129,7 @@ export default function ModalAddTransaction() {
     setDate('2019.07.07');
     setComment('');
   };
+
   return (
     <Modal className={style.modal} open={useSelector(IsModalTrasaction)}>
       <FormControl className={style.form}>
@@ -141,6 +167,20 @@ export default function ModalAddTransaction() {
             </ul>
           </label>
         </div>
+
+        {checkBox ? null : (
+          <CssSelect
+            className={style.select}
+            id="select"
+            label="Выберите категорию"
+            select
+          >
+            <div className={style.selectList}>
+              <MenuItem value="10">Ten</MenuItem>
+              <MenuItem value="20">Twenty</MenuItem>
+            </div>
+          </CssSelect>
+        )}
 
         <div className={style.quantityAndDate}>
           <CssTextField

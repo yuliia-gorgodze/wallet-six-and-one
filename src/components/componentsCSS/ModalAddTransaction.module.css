@@ -85,7 +85,16 @@
 .comment {
   margin-bottom: 50px;
 }
+.select {
+  width: 100%;
+  border: none;
+}
+.selectList {
+  margin-right: 30px;
+  width: 410px;
 
+  bottom: 0;
+}
 @media screen and (max-width: 767px) {
   .text {
     font-size: 25px;
@@ -115,7 +124,7 @@
   .form {
     padding: 40px !important;
     width: 540px;
-    height: 540px;
+    height: 670px;
     border-radius: 20px;
   }
   .modal {
@@ -152,6 +161,7 @@
     margin-bottom: 50px !important;
   }
 }
+
 @media screen and (min-width: 1280px) {
   .form {
     margin-top: 240px;
