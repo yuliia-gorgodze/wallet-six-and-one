@@ -18,8 +18,19 @@ import headerIcons from '../assets/icons/header-icons.svg';
 const CssTextField = withStyles({
   root: {
     marginBottom: '40px',
+    '& .MuiInputBase-input': {
+      // color: '#fff', // Text color
+      fontFamily: 'Circe-regular, sans-serif',
+      fontSize: '18px',
+      lineHeight: '1.5',
+    },
+    '& label': {
+      fontFamily: 'Circe-regular, sans-serif',
+      fontSize: '18px',
+    },
     '& label.Mui-focused': {
       color: '#24cca7',
+      fontFamily: 'Circe-regular, sans-serif',
     },
     '& .MuiInput-underline:after': {
       borderBottomColor: '#24cca7',
@@ -29,6 +40,10 @@ const CssTextField = withStyles({
     },
     '& .MuiInput-underline.Mui-error:after': {
       borderBottomColor: 'red',
+    },
+    '& .MuiFormHelperText-root.Mui-error': {
+      fontFamily: 'Circe-regular, sans-serif',
+      fontSize: '15px',
     },
   },
 })(TextField);
@@ -118,7 +133,7 @@ export default function RegistrationForm() {
         />
         <CssTextField
           fullWidth
-          id="password"
+          id="passwordConfirmation"
           name="passwordConfirmation"
           type="password"
           label="Пароль"
