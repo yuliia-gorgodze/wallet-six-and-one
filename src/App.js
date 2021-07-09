@@ -2,7 +2,7 @@ import React, { Suspense, lazy, useEffect } from 'react';
 import { Redirect, Switch } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Header from './components/Header';
-import Navigation from './components/Navigation';
+// import Navigation from './components/Navigation';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import ButtonAddTransaction from './components/ButtonAddTransaction';
@@ -60,7 +60,7 @@ export default function App() {
       )}
 
       <ModalAddTransaction />
-      <Navigation />
+      {/* <Navigation /> */}
 
       <Suspense fallback={<Spinner />}>
         <Switch>
