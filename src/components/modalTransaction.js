@@ -1,20 +1,15 @@
-import React from 'react';
-import {
-  FormControl,
-  Input,
-  FormHelperText,
-  Modal,
-  Select,
-  OutlinedInput,
-  MenuItem,
-} from '@material-ui/core';
+import React, { useState } from 'react';
+import { FormControl, Modal } from '@material-ui/core';
+
 import { useSelector, useDispatch } from 'react-redux';
-import { modalTrancactionIsOpen } from '../redux/modaltransaction/modalTransactionOperations';
+import {
+  modalTrancactionIsOpen,
+  addTrancaction,
+} from '../redux/modaltransaction/modalTransactionOperations';
 import { IsModalTrasaction } from '../redux/modaltransaction/modalTransactionSelector';
 import style from './componentsCSS/ModalAddTransaction.module.css';
-import chacked from './modalTransactionFunction';
+
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import { withStyles } from '@material-ui/core/styles';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -83,11 +78,32 @@ const CssDate = withStyles({
 })(TextField);
 
 export default function ModalAddTransaction() {
+  const [checkBox, setcheckBox] = useState(false);
+  const [transaction, setTransaction] = useState('');
+  const [category, setCategory] = useState('');
+  const [date, setDate] = useState('2019.07.07');
+  const [comment, setComment] = useState('');
+
   const dispatch = useDispatch();
+
   const closeModal = e => {
     dispatch(modalTrancactionIsOpen(false));
   };
 
+  const onSabmit = e => {
+    e.preventDefault();
+    dispatch(
+      addTrancaction({ checkBox, transaction, category, date, comment }),
+    );
+    resetForm();
+  };
+  const resetForm = () => {
+    setcheckBox(false);
+    setTransaction('');
+    setCategory('');
+    setDate('2019.07.07');
+    setComment('');
+  };
   return (
     <Modal className={style.modal} open={useSelector(IsModalTrasaction)}>
       <FormControl className={style.form}>
@@ -101,18 +117,26 @@ export default function ModalAddTransaction() {
         <div className={style.changesContainer}>
           <label className={style.customCheckbox}>
             <input
-              onClick={chacked}
+              onChange={e => setcheckBox(e.target.checked)}
               className={style.checkbox}
               name="changesTransactions"
               type="checkbox"
               id="checkBox"
             ></input>
             <ul className={style.changeList}>
-              <li className={style.plus} id="addText">
-                <span className={style.plusText}>Доходы</span>
+              <li className={checkBox ? 'addText' : ''} id="addText">
+                <span
+                  className={!checkBox ? style.plusText : style.plusTextActive}
+                >
+                  Доходы
+                </span>
               </li>
-              <li className={style.minus} id="addСosts">
-                <span className={style.minusText}>Расходы</span>
+              <li className={checkBox ? '' : 'addСosts'} id="addСosts">
+                <span
+                  className={checkBox ? style.minusText : style.minusTextActive}
+                >
+                  Расходы
+                </span>
               </li>
             </ul>
           </label>
@@ -120,13 +144,16 @@ export default function ModalAddTransaction() {
 
         <div className={style.quantityAndDate}>
           <CssTextField
+            onChange={e => setTransaction(e.target.value)}
             className={style.inputQuantity}
             id="quantity"
             name="quantity"
             type="text"
             placeholder="0.00"
+            value={transaction}
           />
           <CssDate
+            onChange={e => setDate(e.target.value)}
             className={style.data}
             id="date"
             type="date"
@@ -134,14 +161,20 @@ export default function ModalAddTransaction() {
           />
         </div>
         <CssTextField
+          onChange={e => setComment(e.target.value)}
           fullWidth
           className={style.comment}
           id="coment"
           name="comment"
           type="text"
           placeholder="Коментарий"
+          value={comment}
         />
-        <button type="submit" className={`${style.button} ${style.buttonAdd}`}>
+        <button
+          type="submit"
+          onClick={onSabmit}
+          className={`${style.button} ${style.buttonAdd}`}
+        >
           Добавить
         </button>
         <button
