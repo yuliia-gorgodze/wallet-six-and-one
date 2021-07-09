@@ -3,8 +3,7 @@
   background: #ffffff;
   text-align: center;
   align-items: center;
-  margin-top: 70px;
-  padding: 20px;
+  padding: 20px !important;
   width: 320px;
 }
 .modal {
@@ -42,9 +41,10 @@
   margin-bottom: 40px;
 }
 .customCheckbox > input {
-  position: absolute;
+  width: 80px;
+  height: 50px;
   z-index: -1;
-  opacity: 1;
+  opacity: 0;
 }
 .changesContainer {
   position: relative;
@@ -52,27 +52,53 @@
   height: 40px;
   border: 1px solid #e0e0e0;
   border-radius: 30px;
+  margin-bottom: 40px;
+}
+.plusText {
+  color: #e0e0e0;
+  position: absolute;
+  left: -100%;
+  top: 25%;
+}
+.minusText {
+  color: #e0e0e0;
+  position: absolute;
+  right: -100%;
+  top: 25%;
+}
+.minusText:focus-within {
+  color: var(--dg-button-color);
+}
+.catrgoryMenu {
+  width: 100%;
+}
+
+.comment {
+  margin-bottom: 50px;
 }
 
 @media screen and (max-width: 767px) {
-  .form {
-    margin-top: 70px;
-  }
   .text {
     font-size: 25px;
   }
   .clouseButton {
     display: none;
   }
+  .quantityAndDate {
+    flex-direction: column;
+  }
+  .data,
+  .inputQuantity {
+    margin-bottom: 40px;
+    width: 100%;
+  }
 }
+
 @media screen and (min-width: 768px) {
   .form {
-    padding-top: 40px;
-    padding-right: 40px;
-    padding-left: 40px;
+    padding: 40px !important;
     width: 540px;
     height: 540px;
-    margin-top: 90px;
     border-radius: 20px;
   }
   .modal {
@@ -91,8 +117,21 @@
   .text {
     font-size: 30px;
   }
+  .quantityAndDate {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  .quantityAndDate {
+    flex-direction: row;
+  }
+  .inputQuantity {
+    margin-right: 20px;
+    text-align: center;
+  }
 }
-
 @media screen and (min-width: 1280px) {
   .form {
     margin-top: 240px;
