@@ -24,27 +24,29 @@ export default function Header() {
   });
   return (
     <>
-      <header className={`${style.header} container`}>
-        <div className={style.logo}>
-          <svg className={style.logo__icon}>
-            <use href={headerIcons + '#wallet'}></use>
-          </svg>
-          <span className={style.logo__text}>Wallet</span>
-        </div>
-        <div className={style.header__info}>
-          <span className={style.header__name}>{userName}</span>
-          <button
-            className={style.exitButton}
-            onClick={openModal}
-            type="button"
-          >
-            <svg width="18" height="18">
-              <use href={headerIcons + '#exit'}></use>
+      <header className={style.header}>
+        <div className={`${style.header__container} container`}>
+          <div className={style.logo}>
+            <svg className={style.logo__icon}>
+              <use href={headerIcons + '#wallet'}></use>
             </svg>
-            <span className={style.exitButton__text}>Выйти</span>
-          </button>
+            <span className={style.logo__text}>Wallet</span>
+          </div>
+          <div className={style.header__info}>
+            <span className={style.header__name}>{userName}</span>
+            <button
+              className={style.exitButton}
+              onClick={openModal}
+              type="button"
+            >
+              <svg width="18" height="18">
+                <use href={headerIcons + '#exit'}></use>
+              </svg>
+              <span className={style.exitButton__text}>Выйти</span>
+            </button>
+          </div>
+          <ModalLogout />
         </div>
-        <ModalLogout />
       </header>
     </>
   );

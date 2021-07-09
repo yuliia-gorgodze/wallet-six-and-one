@@ -1,5 +1,8 @@
 .header {
   background-color: #fff;
+}
+
+.header__container {
   display: flex;
   align-items: center;
   justify-content: space-between;

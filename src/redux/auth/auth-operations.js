@@ -2,15 +2,18 @@ import axios from 'axios';
 import authActions from './auth-actions';
 import notification from '../../helpers/react-toastify';
 
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
+axios.defaults.baseURL =
+  'https://fs25on-team7-wallet-backend.herokuapp.com/api';
 
 const register = credentials => async dispatch => {
+  const { email, password } = credentials;
   dispatch(authActions.registerRequest());
 
   try {
-    const response = await axios.post('/users/signup', credentials);
+    await axios.post('/users/signup', credentials);
+    const response = await axios.post('/users/login', { email, password });
 
-    dispatch(authActions.registerSuccess(response.data));
+    dispatch(authActions.registerSuccess(response.data.data));
     notification.sucess('Успех!');
   } catch (error) {
     dispatch(authActions.registerError(error.message));
@@ -24,7 +27,8 @@ const logIn = credentials => async dispatch => {
   try {
     const response = await axios.post('/users/login', credentials);
 
-    dispatch(authActions.loginSuccess(response.data));
+    dispatch(authActions.loginSuccess(response.data.data));
+
     notification.sucess('Успех!');
   } catch (error) {
     dispatch(authActions.loginError(error.message));
@@ -32,21 +36,23 @@ const logIn = credentials => async dispatch => {
   }
 };
 
-// const getCurrentUser = () => async (dispatch, getState) => {
-//     const persistedToken = getState().auth.token;
+const getCurrentUser = () => async (dispatch, getState) => {
+  const persistedToken = getState().auth.token;
 
-//     if (!persistedToken) return;
+  if (!persistedToken) return;
 
-//     dispatch(authActions.getCurrentUserRequest());
+  dispatch(authActions.getCurrentUserRequest());
 
-//     try {
-//       const response = await axios.get('/users/current');
+  try {
+    const response = await axios.get('/users/current', {
+      headers: { Authorization: `Bearer ${persistedToken}` },
+    });
 
-//       dispatch(authActions.getCurrentUserSuccess(response.data));
-//     } catch (error) {
-//       dispatch(authActions.getCurrentUserError(error.message));
-//     }
-//   };
+    dispatch(authActions.getCurrentUserSuccess(response.data.data));
+  } catch (error) {
+    dispatch(authActions.getCurrentUserError(error.message));
+  }
+};
 
 const logOut = () => async (dispatch, getState) => {
   dispatch(authActions.logoutRequest());
@@ -68,4 +74,4 @@ const logOut = () => async (dispatch, getState) => {
 };
 
 // eslint-disable-next-line
-export default { register, logIn, logOut };
+export default { register, logIn, logOut, getCurrentUser };
