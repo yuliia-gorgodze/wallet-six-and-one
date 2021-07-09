@@ -1,11 +1,3 @@
-## Credentials для авторизации
-
-Чтоб залогинится и не заморачиваться можно использовать
-
-### email: asd123asd@mail.com
-
-### password: asd123asd
-
 # Getting Started with Create React App
 
 This project was bootstrapped with
