@@ -1,5 +1,6 @@
 .tittle {
   font-family: Poppins;
+  display: inline-block;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
@@ -9,15 +10,14 @@
 }
 .diagram {
   width: 100%;
-  height: 320px;
-  background-color: tomato;
-  border-radius: 50%;
-  margin-right: 20px;
-  text-align: center;
 }
-
+@media screen and (max-width: 767px) {
+  .diagram {
+    margin-bottom: 30px;
+  }
+}
 @media screen and (min-width: 768px) {
-  .staticticContainer {
+  .statisticContainer {
     display: flex;
   }
   .table {
@@ -25,10 +25,9 @@
   }
   .diagram {
     width: 50%;
-    height: 400px;
-    background-color: tomato;
-    border-radius: 50%;
-    margin-right: 20px;
-    text-align: center;
+  }
+  .statistic {
+    display: flex;
+    flex-direction: column;
   }
 }
