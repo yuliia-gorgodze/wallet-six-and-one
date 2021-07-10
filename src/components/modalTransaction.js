@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { FormControl, Modal, NativeSelect, MenuItem } from '@material-ui/core';
+import { FormControl, Modal, MenuItem } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
@@ -87,6 +87,10 @@ const CssSelect = withStyles({
       fontSize: '18px',
       color: '#BDBDBD',
     },
+    '& label.Mui-focused': {
+      color: '#24cca7',
+      fontFamily: 'Circe-regular, sans-serif',
+    },
     '& .MuiInput-underline:after': {
       borderBottomColor: '#24cca7',
     },
@@ -102,11 +106,12 @@ const CssSelect = withStyles({
     },
   },
 })(TextField);
+
 export default function ModalAddTransaction() {
   const [checkBox, setcheckBox] = useState(false);
   const [transaction, setTransaction] = useState('');
   const [category, setCategory] = useState('');
-  const [date, setDate] = useState('2019.07.07');
+  const [date, setDate] = useState(getCurrentDate());
   const [comment, setComment] = useState('');
 
   const dispatch = useDispatch();
@@ -115,20 +120,53 @@ export default function ModalAddTransaction() {
     dispatch(modalTrancactionIsOpen(false));
   };
 
+  // const formik = useFormik({
+  //   initialValues: {
+  //     transaction: '',
+  //     category: '',
+  //     date: '',
+  //     comment: '',
+  //   },
+  //   validationSchema: Yup.object({
+
+  //     transaction: Yup.string().required('Это поле обязательно'),
+  //     category: Yup.string().optional(),
+  //     comment: Yup.string().optional(),
+  //   }),
+  //   onSubmit: ({ checkBox, category, transaction, date, comment }) => {
+  //     dispatch(
+  //       addTrancaction({ checkBox, category, transaction, date, comment }),
+  //     );
+  //     formik.resetForm();
+  //   },
+  // });
+
   const onSabmit = e => {
     e.preventDefault();
     dispatch(
-      addTrancaction({ checkBox, transaction, category, date, comment }),
+      addTrancaction({ checkBox, category, transaction, date, comment }),
     );
+
     resetForm();
   };
   const resetForm = () => {
     setcheckBox(false);
     setTransaction('');
     setCategory('');
-    setDate('2019.07.07');
+    setDate(null);
     setComment('');
   };
+
+  function pad(value) {
+    return String(value).padStart(2, '0');
+  }
+
+  function getCurrentDate() {
+    const date = pad(new Date().getDate());
+    const month = pad(new Date().getMonth());
+    const fullYear = pad(new Date().getFullYear());
+    return `${fullYear}-${month}-${date}`;
+  }
 
   return (
     <Modal className={style.modal} open={useSelector(IsModalTrasaction)}>
@@ -139,7 +177,6 @@ export default function ModalAddTransaction() {
           className={style.clouseButton}
         ></button>
         <span className={style.text}>Добавить транзакцию</span>
-
         <div className={style.changesContainer}>
           <label className={style.customCheckbox}>
             <input
@@ -167,21 +204,25 @@ export default function ModalAddTransaction() {
             </ul>
           </label>
         </div>
-
         {checkBox ? null : (
           <CssSelect
             className={style.select}
             id="select"
             label="Выберите категорию"
             select
+            value={category}
+            onChange={e => setCategory(e.target.value)}
           >
-            <div className={style.selectList}>
-              <MenuItem value="10">Ten</MenuItem>
-              <MenuItem value="20">Twenty</MenuItem>
-            </div>
+            <MenuItem value="main">Основной</MenuItem>
+            <MenuItem value="eat">Еда</MenuItem>
+            <MenuItem value="car">Авто</MenuItem>
+            <MenuItem value="growth">Развитие</MenuItem>
+            <MenuItem value="children">Дети</MenuItem>
+            <MenuItem value="house">Дом</MenuItem>
+            <MenuItem value="education">Образование</MenuItem>
+            <MenuItem value="other">Остальные</MenuItem>
           </CssSelect>
         )}
-
         <div className={style.quantityAndDate}>
           <CssTextField
             onChange={e => setTransaction(e.target.value)}
@@ -197,7 +238,7 @@ export default function ModalAddTransaction() {
             className={style.data}
             id="date"
             type="date"
-            defaultValue="2019-07-07"
+            defaultValue={date}
           />
         </div>
         <CssTextField

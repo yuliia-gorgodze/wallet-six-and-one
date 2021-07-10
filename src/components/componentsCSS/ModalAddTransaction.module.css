@@ -89,12 +89,7 @@
   width: 100%;
   border: none;
 }
-.selectList {
-  margin-right: 30px;
-  width: 410px;
 
-  bottom: 0;
-}
 @media screen and (max-width: 767px) {
   .text {
     font-size: 25px;
