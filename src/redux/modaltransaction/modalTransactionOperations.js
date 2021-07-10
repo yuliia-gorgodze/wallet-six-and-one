@@ -1,3 +1,5 @@
+import notification from '../../helpers/react-toastify';
+
 import {
   MODAL_IS_OPEN,
   ADD_NEW_TRANSACTION_SUCCES,
@@ -15,5 +17,6 @@ export const addTrancaction = transaction => async dispatch => {
     dispatch(ADD_NEW_TRANSACTION_SUCCES(transaction));
   } catch (error) {
     dispatch(ADD_NEW_TRANSACTION_ERROR('Не удалось добавить'));
+    notification.error('Что-то пошло не так!');
   }
 };
