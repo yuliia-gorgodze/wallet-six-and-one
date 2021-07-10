@@ -43,9 +43,7 @@ export default function HomeTab() {
               {result.map(el => {
                 return (
                   <TableRow>
-                    <TableCell style={{ fontSize: 14 }} align="center">
-                      {el.date}
-                    </TableCell>
+                    <TableCell align="center">{el.date}</TableCell>
                     <TableCell align="center">{el.type}</TableCell>
                     <TableCell align="center">{el.category}</TableCell>
                     <TableCell align="center">{el.comment}</TableCell>
