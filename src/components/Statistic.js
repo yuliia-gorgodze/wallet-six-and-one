@@ -1,29 +1,67 @@
-import React from 'react';
+import React, { Component } from 'react';
 import style from './componentsCSS/Statistic.module.css';
 import Table from './Table';
-import Diagram from './Diagram';
-function Statistic() {
-  return (
-    <>
-      <h1 className={style.tittle}>Статистика</h1>
-      <div className={style.staticticContainer}>
-        <div className={style.diagram}>
-          <Diagram />
-        </div>
-        <div className={style.table}>
-          <Table />
-          <ul>
-            <li>
-              Расходы: <span>0</span>
-            </li>
-            <li>
-              Доходы: <span>100000000000$</span>
-            </li>
-          </ul>
+import Chart from './Diagram';
+
+class Statistic extends Component {
+  constructor() {
+    super();
+    this.state = {
+      chartData: {},
+    };
+  }
+  componentWillMount() {
+    this.getChartData();
+  }
+  getChartData() {
+    this.setState({
+      chartData: {
+        labels: ['Продукты', 'Такси', 'Бананы', 'Апельсины'],
+        datasets: [
+          {
+            label: 'Population',
+            data: [617594, 181045, 153060, 106519, 105162, 95072],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+              'rgba(255, 159, 64, 0.6)',
+              'rgba(255, 99, 132, 0.6)',
+            ],
+          },
+        ],
+      },
+    });
+  }
+  render() {
+    return (
+      <div className={style.statistic}>
+        <h1 className={style.tittle}>Статистика</h1>
+        <div className={style.statisticContainer}>
+          <div className={style.diagram}>
+            <Chart
+              chartData={this.state.chartData}
+              location="Massachusetts"
+              legendPosition="bottom"
+            />
+          </div>
+          <div className={style.table}>
+            <Table />
+            <ul>
+              <li>
+                Расходы: <span>0</span>
+              </li>
+              <li>
+                Доходы: <span>100000000000$</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </>
-  );
+    );
+  }
 }
 
 export default Statistic;
