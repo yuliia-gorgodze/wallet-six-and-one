@@ -1,16 +1,6 @@
-.modalContent {
-  /* display: flex; */
-  /* margin-top: 70px; */
-  /* justify-content: center; */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .form {
   position: relative;
-  background: #ffffff;
+  background: var(--bg-color-secondary);
   text-align: center;
   align-items: center;
   padding: 20px 20px 40px !important;
@@ -125,17 +115,10 @@
   top: 25%;
   color: var(--text-pink-color);
 }
-/* .catrgoryMenu {
-    width: 100%;
-  } */
 
 .comment {
   margin-bottom: 50px;
 }
-/* .select {
-  width: 100%;
-  border: none;
-} */
 
 @media screen and (max-width: 767px) {
   .text {
@@ -168,9 +151,7 @@
     height: auto;
     border-radius: 20px;
   }
-  /* .modal {
-    align-items: center;
-  } */
+
   .clouseButton {
     position: absolute;
     border: none;
@@ -216,9 +197,3 @@
     width: 300px;
   }
 }
-
-/* @media screen and (min-width: 1280px) {
-  .form {
-    margin-top: 240px;
-  }
-} */
