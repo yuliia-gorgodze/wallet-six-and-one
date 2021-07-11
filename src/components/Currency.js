@@ -9,8 +9,6 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core';
-import { useMediaQuery } from 'react-responsive';
-import Navigation from './NavBar';
 import addStyles from '../components/componentsCSS/SideBar.module.css';
 import Loader from 'react-loader-spinner';
 
@@ -69,8 +67,6 @@ const useStyles = makeStyles({
 });
 
 function CurrencyExchange() {
-  const isTabletOrMobile = useMediaQuery({ maxWidth: 767 });
-  const isDesktopOrTablet = useMediaQuery({ minWidth: 1280 });
   const styles = useStyles();
   const [currency, setCurrency] = useState('');
 

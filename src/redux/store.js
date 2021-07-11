@@ -15,6 +15,7 @@ import { global } from './global/global-reducer';
 import { trasaction } from './modaltransaction/modalTransactionReducer';
 import authReducer from './auth/auth-reducer';
 import exchangeReducer from './exchange/exchangeReducer';
+import transactionReducer from './transactions/transactionReducer';
 
 const persistConfig = {
   key: 'authToken',
@@ -31,6 +32,7 @@ const store = configureStore({
     global,
     auth: persistedAuthReducer,
     exchange: exchangeReducer,
+    transactions: transactionReducer,
   },
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware({
