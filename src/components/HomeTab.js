@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-  Paper,
   Table,
   TableBody,
   TableCell,
@@ -13,6 +12,7 @@ import {
 } from '@material-ui/core';
 import transactionOperations from '../redux/transactions/transactionOperations';
 import transactionSelectors from '../redux/transactions/transactionSelectors';
+import styles from './componentsCSS/HomeTab.module.css';
 
 export default function HomeTab() {
   const dispatch = useDispatch();
@@ -24,25 +24,39 @@ export default function HomeTab() {
 
   return (
     <>
-      <TableContainer>
+      <TableContainer className={styles.tableContainer}>
         <Table aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell style={{ width: '20%' }} align="center">
+          <TableHead className={styles.tableHead}>
+            <TableRow className={styles.tableRow}>
+              <TableCell
+                className={styles.tableCell}
+                style={{ width: '20%' }}
+                align="center"
+              >
                 Дата
               </TableCell>
-              <TableCell align="center">Тип</TableCell>
-              <TableCell align="center">Категория</TableCell>
-              <TableCell align="center">Комментарий</TableCell>
-              <TableCell align="center">Сумма</TableCell>
-              <TableCell align="center">Баланс</TableCell>
+              <TableCell className={styles.tableCell} align="center">
+                Тип
+              </TableCell>
+              <TableCell className={styles.tableCell} align="center">
+                Категория
+              </TableCell>
+              <TableCell className={styles.tableCell} align="center">
+                Комментарий
+              </TableCell>
+              <TableCell className={styles.tableCell} align="center">
+                Сумма
+              </TableCell>
+              <TableCell className={styles.tableCell} align="center">
+                Баланс
+              </TableCell>
             </TableRow>
           </TableHead>
           <>
             <TableBody>
               {result.map(el => {
                 return (
-                  <TableRow>
+                  <TableRow className={styles.tableRow}>
                     <TableCell align="center">{el.date}</TableCell>
                     <TableCell align="center">{el.type}</TableCell>
                     <TableCell align="center">{el.category}</TableCell>
