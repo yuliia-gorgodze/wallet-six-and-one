@@ -1,52 +1,99 @@
+.modalContent {
+  /* display: flex; */
+  /* margin-top: 70px; */
+  /* justify-content: center; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .form {
   position: relative;
   background: #ffffff;
   text-align: center;
   align-items: center;
-  padding: 20px !important;
+  padding: 20px 20px 40px !important;
   width: 320px;
 }
-.modal {
-  display: flex;
-  margin-top: 70px;
-  justify-content: center;
+
+.changeList {
+  cursor: pointer;
 }
+
 .button {
-  text-transform: uppercase;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+  padding: 11px 0;
+  border: 1px solid transparent;
+
   border-radius: 20px;
-  border: none;
-  width: 300px;
-  height: 50px;
+
+  font-family: 'Circe-regular', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background-color 250ms ease-out, color 250ms ease-out;
+
+  cursor: pointer;
 }
-.buttonAdd {
-  color: #fff;
+
+.button + .button {
+  margin-top: 20px;
+}
+
+.button__submit {
+  composes: button;
   background-color: var(--dg-button-color);
-  margin-bottom: 20px;
+  color: var(--bg-color-secondary);
 }
-.undo {
-  width: 300px;
-  height: 50px;
-  border: 1px solid #4a56e2;
-  color: #4a56e2;
-  background-color: #ffffff;
+
+.button__submit:hover,
+.button__undo:focus {
+  background-color: var(--bg-color-secondary);
+  color: var(--dg-button-color);
+  border: 1px solid var(--dg-button-color);
+}
+
+.button__undo {
+  composes: button;
+  color: var(--bg-form-privat);
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--bg-form-privat);
+}
+
+.button__undo:hover,
+.button__undo:focus {
+  background-color: var(--bg-form-privat);
+  color: var(--bg-color-secondary);
 }
 
 .text {
-  font-family: Poppins;
+  display: inline-block;
+  margin-bottom: 40px;
 
+  font-family: 'Poppins-Bold', sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 45px;
   letter-spacing: 0em;
-  margin-bottom: 40px;
 }
 .customCheckbox > input {
   width: 80px;
   height: 50px;
   z-index: -1;
   opacity: 0;
+  cursor: pointer;
 }
 .changesContainer {
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   width: 80px;
   height: 40px;
@@ -78,17 +125,17 @@
   top: 25%;
   color: var(--text-pink-color);
 }
-.catrgoryMenu {
-  width: 100%;
-}
+/* .catrgoryMenu {
+    width: 100%;
+  } */
 
 .comment {
   margin-bottom: 50px;
 }
-.select {
+/* .select {
   width: 100%;
   border: none;
-}
+} */
 
 @media screen and (max-width: 767px) {
   .text {
@@ -100,12 +147,11 @@
   .quantityAndDate {
     flex-direction: column;
   }
-  .data,
+
   .inputQuantity {
-    margin-bottom: 40px;
-    width: 100%;
+    margin-bottom: 40px !important;
   }
-  .inputQuantity,
+
   .comment {
     margin-bottom: 40px !important;
   }
@@ -117,23 +163,35 @@
 
 @media screen and (min-width: 768px) {
   .form {
-    padding: 40px !important;
+    padding: 40px 60px 60px !important;
     width: 540px;
-    height: 670px;
+    height: auto;
     border-radius: 20px;
   }
-  .modal {
+  /* .modal {
     align-items: center;
-  }
+  } */
   .clouseButton {
     position: absolute;
     border: none;
-    width: 16px;
-    height: 16px;
-    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    width: 25px;
+    height: 25px;
+    background-color: var(--bg-color-secondary);
     top: 20px;
     right: 20px;
+    border-radius: 50%;
     background-image: url(../../assets/icons/buttonModalTransactionClouse.svg);
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: background-color 250ms ease-out;
+  }
+  .clouseButton:hover,
+  .clouseButton:focus {
+    background-color: var(--dg-button-color);
   }
   .text {
     font-size: 30px;
@@ -141,24 +199,26 @@
   .quantityAndDate {
     display: flex;
     align-items: center;
+    flex-direction: row;
     width: 100%;
     justify-content: space-between;
     margin-bottom: 40px;
   }
-  .quantityAndDate {
-    flex-direction: row;
-  }
+
   .inputQuantity {
-    margin-right: 20px;
+    margin-right: 20px !important;
     text-align: center;
   }
   .comment {
     margin-bottom: 50px !important;
   }
+  .button {
+    width: 300px;
+  }
 }
 
-@media screen and (min-width: 1280px) {
+/* @media screen and (min-width: 1280px) {
   .form {
     margin-top: 240px;
   }
-}
+} */

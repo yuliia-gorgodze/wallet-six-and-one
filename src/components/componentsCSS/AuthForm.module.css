@@ -97,24 +97,32 @@
 
 .button__submit {
   composes: button;
-  background-color: #24cca7;
-  color: #ffffff;
+  background-color: var(--dg-button-color);
+  color: var(--bg-color-secondary);
 }
 
-.button__submit:hover {
-  background-color: #ffffff;
-  color: #24cca7;
-  border: 1px solid #24cca7;
+.button__submit:hover,
+.button__submit:focus {
+  background-color: var(--bg-color-secondary);
+  color: var(--dg-button-color);
+  border: 1px solid var(--dg-button-color);
 }
 
 .button__redirect {
   composes: button;
-  color: #4a56e2;
-  background-color: #ffffff;
-  border: 1px solid #4a56e2;
+  color: var(--bg-form-privat);
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--bg-form-privat);
 }
 
-.button__redirect:hover {
-  background-color: #4a56e2;
-  color: #ffffff;
+.button__redirect:hover,
+.button__redirect:focus {
+  background-color: var(--bg-form-privat);
+  color: var(--bg-color-secondary);
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    width: 300px;
+  }
 }

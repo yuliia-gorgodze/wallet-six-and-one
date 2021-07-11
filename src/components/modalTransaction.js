@@ -1,7 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { FormControl, Modal, MenuItem } from '@material-ui/core';
+import {
+  FormControl,
+  Modal,
+  MenuItem,
+  Backdrop,
+  Fade,
+} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
@@ -63,9 +69,6 @@ const CssDate = withStyles({
     },
     '& .MuiInput-underline:before': {
       borderBottomColor: '#bdbdbd',
-    },
-    '& .MuiInput-underline.Mui-error:after': {
-      borderBottomColor: 'red',
     },
     '@media screen and (min-width: 768px) ': {
       '& .data': {
@@ -161,118 +164,135 @@ export default function ModalAddTransaction() {
   }
 
   return (
-    <Modal className={style.modal} open={useSelector(IsModalTrasaction)}>
-      <form onSubmit={handleSubmit}>
-        <FormControl className={style.form}>
-          <button
-            onClick={closeModal}
-            type="button"
-            className={style.clouseButton}
-          ></button>
-          <span className={style.text}>Добавить транзакцию</span>
-          <div className={style.changesContainer}>
-            <label className={style.customCheckbox}>
-              <input
+    <Modal
+      className={style.modal}
+      open={useSelector(IsModalTrasaction)}
+      onClose={() => closeModal()}
+      closeAfterTransition
+      BackdropComponent={Backdrop}
+      BackdropProps={{
+        timeout: 500,
+      }}
+    >
+      <Fade in={useSelector(IsModalTrasaction)}>
+        <div className={style.modalContent}>
+          <form onSubmit={handleSubmit} className={style.form}>
+            {/* <FormControl className={style.form}> */}
+            <button
+              onClick={closeModal}
+              type="button"
+              className={style.clouseButton}
+            ></button>
+            <span className={style.text}>Добавить транзакцию</span>
+            <div className={style.changesContainer}>
+              <label className={style.customCheckbox}>
+                <input
+                  onChange={handleChange}
+                  className={style.checkbox}
+                  name="checkBox"
+                  type="checkbox"
+                  id="checkBox"
+                ></input>
+                <ul className={style.changeList}>
+                  <li className={values.checkBox ? 'addText' : ''} id="addText">
+                    <span
+                      className={
+                        !values.checkBox ? style.plusText : style.plusTextActive
+                      }
+                    >
+                      Доходы
+                    </span>
+                  </li>
+                  <li
+                    className={values.checkBox ? '' : 'addСosts'}
+                    id="addСosts"
+                  >
+                    <span
+                      className={
+                        values.checkBox
+                          ? style.minusText
+                          : style.minusTextActive
+                      }
+                    >
+                      Расходы
+                    </span>
+                  </li>
+                </ul>
+              </label>
+            </div>
+            {values.checkBox ? null : (
+              <CssSelect
+                fullWidth
+                id="select"
+                name="category"
+                label="Выберите категорию"
+                select
+                value={values.category}
                 onChange={handleChange}
-                className={style.checkbox}
-                name="checkBox"
-                type="checkbox"
-                id="checkBox"
-              ></input>
-              <ul className={style.changeList}>
-                <li className={values.checkBox ? 'addText' : ''} id="addText">
-                  <span
-                    className={
-                      !values.checkBox ? style.plusText : style.plusTextActive
-                    }
-                  >
-                    Доходы
-                  </span>
-                </li>
-                <li className={values.checkBox ? '' : 'addСosts'} id="addСosts">
-                  <span
-                    className={
-                      values.checkBox ? style.minusText : style.minusTextActive
-                    }
-                  >
-                    Расходы
-                  </span>
-                </li>
-              </ul>
-            </label>
-          </div>
-          {values.checkBox ? null : (
-            <CssSelect
-              className={style.select}
-              id="select"
-              name="category"
-              label="Выберите категорию"
-              select
-              value={values.category}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.category && Boolean(errors.category)}
-              helperText={touched.category && errors.category}
-            >
-              <MenuItem value="main">Основной</MenuItem>
-              <MenuItem value="eat">Еда</MenuItem>
-              <MenuItem value="car">Авто</MenuItem>
-              <MenuItem value="growth">Развитие</MenuItem>
-              <MenuItem value="children">Дети</MenuItem>
-              <MenuItem value="house">Дом</MenuItem>
-              <MenuItem value="education">Образование</MenuItem>
-              <MenuItem value="other">Остальные</MenuItem>
-            </CssSelect>
-          )}
-          <div className={style.quantityAndDate}>
+                onBlur={handleBlur}
+                error={touched.category && Boolean(errors.category)}
+                helperText={touched.category && errors.category}
+              >
+                <MenuItem value="main">Основной</MenuItem>
+                <MenuItem value="eat">Еда</MenuItem>
+                <MenuItem value="car">Авто</MenuItem>
+                <MenuItem value="growth">Развитие</MenuItem>
+                <MenuItem value="children">Дети</MenuItem>
+                <MenuItem value="house">Дом</MenuItem>
+                <MenuItem value="education">Образование</MenuItem>
+                <MenuItem value="other">Остальные</MenuItem>
+              </CssSelect>
+            )}
+            <div className={style.quantityAndDate}>
+              <CssTextField
+                fullWidth
+                className={style.inputQuantity}
+                id="transaction"
+                name="transaction"
+                type="text"
+                placeholder="0.00"
+                value={values.transaction}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.transaction && Boolean(errors.transaction)}
+                helperText={touched.transaction && errors.transaction}
+              />
+              <CssDate
+                fullWidth
+                onChange={handleChange}
+                className={style.data}
+                id="date"
+                type="date"
+                defaultValue={values.date}
+              />
+            </div>
             <CssTextField
-              className={style.inputQuantity}
-              id="transaction"
-              name="transaction"
+              fullWidth
+              className={style.comment}
+              id="coment"
+              name="comment"
               type="text"
-              placeholder="0.00"
-              value={values.transaction}
+              placeholder="Коментарий"
+              value={values.comment}
               onChange={handleChange}
               onBlur={handleBlur}
-              error={touched.transaction && Boolean(errors.transaction)}
-              helperText={touched.transaction && errors.transaction}
+              error={touched.comment && Boolean(errors.comment)}
+              helperText={touched.comment && errors.comment}
             />
-            <CssDate
-              onChange={handleChange}
-              className={style.data}
-              id="date"
-              type="date"
-              defaultValue={values.date}
-            />
-          </div>
-          <CssTextField
-            fullWidth
-            className={style.comment}
-            id="coment"
-            name="comment"
-            type="text"
-            placeholder="Коментарий"
-            value={values.comment}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.comment && Boolean(errors.comment)}
-            helperText={touched.comment && errors.comment}
-          />
-          <button
-            type="submit"
-            className={`${style.button} ${style.buttonAdd}`}
-          >
-            Добавить
-          </button>
-          <button
-            type="button"
-            className={`${style.button} ${style.undo}`}
-            onClick={closeModal}
-          >
-            Отменить
-          </button>
-        </FormControl>
-      </form>
+            <button type="submit" className={style.button__submit}>
+              Добавить
+            </button>
+            <button
+              type="button"
+              className={style.button__undo}
+              onClick={closeModal}
+            >
+              Отменить
+            </button>
+            {/* </FormControl> */}
+          </form>
+        </div>
+      </Fade>
     </Modal>
   );
 }
