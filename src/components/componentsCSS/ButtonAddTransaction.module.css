@@ -11,6 +11,11 @@
   background-image: url(../../assets/icons/addTransaction.svg);
   background-repeat: no-repeat;
   background-position: center;
+  transition: transform 250ms ease-out;
+  cursor: pointer;
+}
+.buttonAddTransaction:hover {
+  transform: scale(1.5);
 }
 
 @media screen and (min-width: 768px) {

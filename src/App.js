@@ -8,6 +8,7 @@ import PublicRoute from './components/PublicRoute';
 import ButtonAddTransaction from './components/ButtonAddTransaction';
 
 import ModalAddTransaction from './components/modalTransaction';
+import ModalComponent from './components/Modal';
 import Spinner from './components/Spinner';
 
 import { useMediaQuery } from 'react-responsive';
@@ -58,8 +59,10 @@ export default function App() {
           <ButtonAddTransaction />
         </>
       )}
+      <ModalComponent>
+        <ModalAddTransaction />
+      </ModalComponent>
 
-      <ModalAddTransaction />
       {/* <Navigation /> */}
 
       <Suspense fallback={<Spinner />}>

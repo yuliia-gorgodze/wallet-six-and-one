@@ -78,7 +78,7 @@
     display: inline-flex;
     margin-left: 15px;
     margin-right: 5px;
-    vertical-align: bottom;
+    vertical-align: middle;
     content: '';
     width: 1px;
     height: 30px;
