@@ -8,8 +8,10 @@ import { IsModalTrasaction } from '../redux/modaltransaction/modalTransactionSel
 const useStyles = makeStyles({
   modal: {
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'baseline',
+    overflowY: 'scroll',
+    padding: '35px 0',
   },
 });
 
@@ -33,7 +35,9 @@ export default function ModalComponent({ children }) {
         timeout: 500,
       }}
     >
-      <Fade in={useSelector(IsModalTrasaction)}>{children}</Fade>
+      <Fade in={useSelector(IsModalTrasaction)}>
+        <div>{children}</div>
+      </Fade>
     </Modal>
   );
 }
