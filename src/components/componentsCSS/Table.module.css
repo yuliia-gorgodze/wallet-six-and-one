@@ -1,0 +1,17 @@
+.table {
+  width: 280px;
+}
+
+.table__container {
+  width: 280px;
+}
+
+@media screen and (min-width: 767px) {
+  .table {
+    width: 350px;
+  }
+
+  .table__container {
+    width: 350px;
+  }
+}
