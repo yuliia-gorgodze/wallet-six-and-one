@@ -17,6 +17,7 @@ import styles from './componentsCSS/HomeTab.module.css';
 export default function HomeTab() {
   const dispatch = useDispatch();
   const result = useSelector(transactionSelectors.getAllTransactions);
+  console.log(result, 'result');
 
   useEffect(() => {
     dispatch(transactionOperations.fetchTransactions());

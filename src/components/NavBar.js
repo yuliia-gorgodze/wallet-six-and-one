@@ -21,7 +21,7 @@ function NavBar() {
               activeClassName={styles.activeLink}
             >
               <HomeIcon
-                color={isTabletOrMobile ? 'inherit' : 'primary.dark'}
+                // color={isTabletOrMobile ? 'inherit' : 'primary.dark'}
                 className={styles.icon}
               />
               {!isTabletOrMobile && (

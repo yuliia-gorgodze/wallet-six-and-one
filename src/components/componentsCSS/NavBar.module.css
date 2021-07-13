@@ -56,6 +56,10 @@
   align-items: center;
 }
 
+.link:hover {
+  color: aqua;
+}
+
 .activeLink {
   font-weight: 700;
   font-size: 20px;

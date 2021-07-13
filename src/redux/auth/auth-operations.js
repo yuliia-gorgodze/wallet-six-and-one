@@ -5,6 +5,15 @@ import notification from '../../helpers/react-toastify';
 axios.defaults.baseURL =
   'https://fs25on-team7-wallet-backend.herokuapp.com/api';
 
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
+
 const register = credentials => async dispatch => {
   const { email, password } = credentials;
   dispatch(authActions.registerRequest());
@@ -12,6 +21,7 @@ const register = credentials => async dispatch => {
   try {
     await axios.post('/users/signup', credentials);
     const response = await axios.post('/users/login', { email, password });
+    token.set(response.data.data.token);
 
     dispatch(authActions.registerSuccess(response.data.data));
     notification.sucess('Успех!');
@@ -23,9 +33,12 @@ const register = credentials => async dispatch => {
 
 const logIn = credentials => async dispatch => {
   dispatch(authActions.loginRequest());
+  console.log(credentials);
 
   try {
     const response = await axios.post('/users/login', credentials);
+    console.log(response.data.data.token);
+    token.set(response.data.data.token);
 
     dispatch(authActions.loginSuccess(response.data.data));
 
