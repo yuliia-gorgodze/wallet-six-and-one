@@ -51,6 +51,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
     dispatch(authActions.getCurrentUserSuccess(response.data.data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
+    notification.warning('Время сессии истекло. Пожалуйста, войдите заново.');
   }
 };
 
