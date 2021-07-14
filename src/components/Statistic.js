@@ -49,12 +49,13 @@ class Statistic extends Component {
           </div>
           <div className={style.table}>
             <Table />
-            <ul>
+            <ul className={style.balances}>
               <li>
-                Расходы: <span>0</span>
+                Расходы: <span className={style.balances__spending}>0</span>
               </li>
               <li>
-                Доходы: <span>100000000000$</span>
+                Доходы:{' '}
+                <span className={style.balances__income}>100000000000$</span>
               </li>
             </ul>
           </div>

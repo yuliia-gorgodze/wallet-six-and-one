@@ -11,6 +11,27 @@
 .diagram {
   width: 100%;
 }
+
+.balances {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.balances > li {
+  display: flex;
+  justify-content: space-between;
+  font-family: Circe-bold;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.balances__spending {
+  color: #ff6596;
+}
+
+.balances__income {
+  color: #24cca7;
+}
 @media screen and (max-width: 767px) {
   .diagram {
     margin-bottom: 30px;
