@@ -1,7 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
 import RegistrationForm from '../components/RegistrationForm';
-import heroImg from '../assets/images/hero.png';
-import heroSmallImg from '../assets/images/small-hero.png';
+import heroImg from '../assets/images/hero-signup.png';
+import heroSmallImg from '../assets/images/small-hero-signup.png';
 import styles from './viewsCSS/AuthPages.module.css';
 
 export default function RegistrationPage() {
