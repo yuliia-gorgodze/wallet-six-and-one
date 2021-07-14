@@ -1,14 +1,20 @@
-.container {
-  padding-top: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 60px;
+.sectoin {
+  overflow: auto;
+  height: 100vh;
   background-color: #e7eaf2;
   background-image: url('../../assets/images/ellipse-2.png'),
     url('../../assets/images/ellipse-1.png');
   background-position: top 0 right 0, bottom 0 left 0;
   /* background-size: 670px 500px;  */
   background-repeat: no-repeat;
+}
+
+.container {
+  padding-top: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 60px;
+  background-color: transparent;
 }
 
 @media screen and (min-width: 768px) {
@@ -24,6 +30,9 @@
   .container {
     display: flex;
     padding: 0;
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
