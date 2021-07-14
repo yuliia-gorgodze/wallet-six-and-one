@@ -33,11 +33,9 @@ const register = credentials => async dispatch => {
 
 const logIn = credentials => async dispatch => {
   dispatch(authActions.loginRequest());
-  console.log(credentials);
 
   try {
     const response = await axios.post('/users/login', credentials);
-    console.log(response.data.data.token);
     token.set(response.data.data.token);
 
     dispatch(authActions.loginSuccess(response.data.data));
@@ -54,12 +52,11 @@ const getCurrentUser = () => async (dispatch, getState) => {
 
   if (!persistedToken) return;
 
+  token.set(persistedToken);
   dispatch(authActions.getCurrentUserRequest());
 
   try {
-    const response = await axios.get('/users/current', {
-      headers: { Authorization: `Bearer ${persistedToken}` },
-    });
+    const response = await axios.get('/users/current');
 
     dispatch(authActions.getCurrentUserSuccess(response.data.data));
   } catch (error) {
@@ -72,14 +69,9 @@ const logOut = () => async (dispatch, getState) => {
   dispatch(authActions.logoutRequest());
 
   try {
-    await axios.post(
-      '/users/logout',
-      {},
-      {
-        headers: { Authorization: `Bearer ${getState().auth.token}` },
-      },
-    );
+    await axios.post('/users/logout');
 
+    token.unset();
     dispatch(authActions.logoutSuccess());
   } catch (error) {
     dispatch(authActions.logoutError(error.message));

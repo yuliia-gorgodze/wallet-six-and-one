@@ -5,12 +5,12 @@ import Statistic from '../components/Statistic';
 
 const StatisticPage = () => {
   return (
-    <>
+    <section className="sectionPage">
       <div className="mainPage container">
         <SideBar />
         <Statistic />
       </div>
-    </>
+    </section>
   );
 };
 

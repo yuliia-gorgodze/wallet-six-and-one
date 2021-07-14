@@ -1,7 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
 import LoginForm from '../components/LoginForm';
-import heroImg from '../assets/images/hero.png';
-import heroSmallImg from '../assets/images/small-hero.png';
+import heroImg from '../assets/images/hero-login.png';
+import heroSmallImg from '../assets/images/small-hero-login.png';
 import styles from './viewsCSS/AuthPages.module.css';
 
 export default function LoginPage() {

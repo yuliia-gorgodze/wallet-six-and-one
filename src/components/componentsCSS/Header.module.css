@@ -1,6 +1,5 @@
 .header {
   background-color: #fff;
-  margin-bottom: 30px;
 }
 
 .header__container {
@@ -9,6 +8,10 @@
   justify-content: space-between;
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.logo__link {
+  color: inherit;
 }
 
 .logo {

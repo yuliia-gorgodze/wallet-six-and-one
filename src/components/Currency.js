@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import addStyles from '../components/componentsCSS/SideBar.module.css';
 import Loader from 'react-loader-spinner';
+import bgImg from '../assets/images/currency-bg.png';
 
 const useStyles = makeStyles({
   table: {
@@ -36,7 +37,11 @@ const useStyles = makeStyles({
   },
 
   body: {
-    background: 'rgb(74, 85, 226)',
+    backgroundColor: 'rgb(74, 85, 226)',
+    backgroundImage: `url(${bgImg})`,
+    backgroundPosition: 'bottom 0',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
   },
 
   currency: {
