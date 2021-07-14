@@ -4,11 +4,13 @@ import SideBar from '../components/SideBar';
 
 function CurrencyPage() {
   return (
-    <div className="page">
-      <SideBar />
+    <section className="sectionPage">
+      <div className="page">
+        <SideBar />
 
-      <Currency />
-    </div>
+        <Currency />
+      </div>
+    </section>
   );
 }
 

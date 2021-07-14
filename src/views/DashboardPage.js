@@ -9,12 +9,12 @@ const DashboardPage = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
 
   return (
-    <>
+    <section className="sectionPage">
       <div className="mainPage container">
         <SideBar />
         {isMobile ? <HomeTabMobile /> : <HomeTab />}
       </div>
-    </>
+    </section>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setModalLogoutState } from '../redux/global/global-operations';
 import { getModalLogoutState } from '../redux/global/global-selectors';
@@ -6,6 +7,7 @@ import ModalLogout from './ModalLogout';
 import style from './componentsCSS/Header.module.css';
 import headerIcons from '../assets/icons/header-icons.svg';
 import { authSelectors } from '../redux/auth';
+import routes from '../routes';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -26,12 +28,15 @@ export default function Header() {
     <>
       <header className={style.header}>
         <div className={`${style.header__container} container`}>
-          <div className={style.logo}>
-            <svg className={style.logo__icon}>
-              <use href={headerIcons + '#wallet'}></use>
-            </svg>
-            <span className={style.logo__text}>Wallet</span>
-          </div>
+          <NavLink to={routes.home} className={style.logo__link}>
+            <div className={style.logo}>
+              <svg className={style.logo__icon}>
+                <use href={headerIcons + '#wallet'}></use>
+              </svg>
+              <span className={style.logo__text}>Wallet</span>
+            </div>
+          </NavLink>
+
           <div className={style.header__info}>
             <span className={style.header__name}>{userName}</span>
             <button
