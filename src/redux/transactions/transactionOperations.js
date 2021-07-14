@@ -9,9 +9,11 @@ const fetchTransactions = () => async dispatch => {
   dispatch(getTransactionsRequest());
 
   try {
-    const { data } = await axios.get('http://localhost:3000/db.json');
+    const { data } = await axios.get('/transactions');
+    console.log(data.data);
+
     console.log(data, 'data');
-    dispatch(getTransactionsSuccess(data));
+    dispatch(getTransactionsSuccess(data.data));
   } catch (error) {
     dispatch(getTransactionsError(error));
   }

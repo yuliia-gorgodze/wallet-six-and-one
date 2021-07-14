@@ -19,7 +19,6 @@ export default () => (dispatch, getState) => {
   if (!getCount(state) && stateTime < condTime) return;
 
   dispatch(loadExchangeStart());
-  console.log('here');
 
   fetchExchange()
     .then(response => {
