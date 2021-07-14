@@ -8,24 +8,26 @@ export default function LoginPage() {
   const matches = useMediaQuery({ maxWidth: 1279 });
 
   return (
-    <div className={styles.container}>
-      <div className={styles.heroContainer}>
-        {matches ? (
-          <img
-            src={heroSmallImg}
-            alt="finance man"
-            width="261px"
-            height="250px"
-          />
-        ) : (
-          <img src={heroImg} alt="finance man" width="436px" />
-        )}
+    <section className={styles.sectoin}>
+      <div className={styles.container}>
+        <div className={styles.heroContainer}>
+          {matches ? (
+            <img
+              src={heroSmallImg}
+              alt="finance man"
+              width="261px"
+              height="250px"
+            />
+          ) : (
+            <img src={heroImg} alt="finance man" width="436px" />
+          )}
 
-        <h1 className={styles.title}>Finance App</h1>
+          <h1 className={styles.title}>Finance App</h1>
+        </div>
+        <div className={styles.formContainer}>
+          <LoginForm />
+        </div>
       </div>
-      <div className={styles.formContainer}>
-        <LoginForm />
-      </div>
-    </div>
+    </section>
   );
 }
