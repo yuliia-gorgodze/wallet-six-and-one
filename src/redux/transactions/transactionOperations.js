@@ -10,9 +10,9 @@ const fetchTransactions = () => async dispatch => {
 
   try {
     const { data } = await axios.get('/transactions');
-    console.log(data.data);
+    // console.log(data.data);
 
-    console.log(data, 'data');
+    // console.log(data, 'data');
     dispatch(getTransactionsSuccess(data.data));
   } catch (error) {
     dispatch(getTransactionsError(error));
