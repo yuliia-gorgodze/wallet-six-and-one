@@ -153,7 +153,7 @@ export default function ModalAddTransaction() {
     const date = pad(new Date().getDate());
     const month = pad(new Date().getMonth());
     const fullYear = pad(new Date().getFullYear());
-    return `${fullYear}-${month}-${date}`;
+    return `${date}.${month}.${fullYear}`;
   }
 
   return (
