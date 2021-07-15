@@ -19,15 +19,16 @@ export const addTrancaction = transaction => async dispatch => {
     comment: transaction.comment,
     amount: Number(transaction.transaction),
   };
-  console.log(result);
   dispatch(ADD_NEW_TRANSACTION_REQUEST());
   try {
     await axios
       .post(`${axios.defaults.baseURL}/transactions`, result)
-      .then(data => console.log('Успешно добавлена транзикция'))
+      .then(data => {
+        dispatch(ADD_NEW_TRANSACTION_SUCCES(data.data.data.transaction));
+        console.log('Успешно добавлена транзакция');
+      })
       .catch(er => console.log(er));
     console.log(`${axios.defaults.baseURL}/transactions`);
-    dispatch(ADD_NEW_TRANSACTION_SUCCES(transaction));
   } catch (error) {
     console.log(error);
     dispatch(ADD_NEW_TRANSACTION_ERROR('Не удалось добавить'));
