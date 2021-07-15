@@ -74,14 +74,14 @@ h3 {
 
 .mainPage {
   display: flex;
-  align-items: flex-start;
+  /* align-items: flex-start; */
 }
 
 @media screen and (max-width: 1279px) and (min-width: 768px) {
   .mainPage {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
   }
 }
 
@@ -91,8 +91,8 @@ h3 {
   }
   .mainPage {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: space-around;
+    /* align-items: flex-start; */
   }
   .sectionPage {
     padding: 40px 0;
@@ -103,7 +103,7 @@ h3 {
   .mainPage {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
   }
 }
 

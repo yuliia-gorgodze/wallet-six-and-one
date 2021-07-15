@@ -62,7 +62,7 @@ export default function HomeTab() {
                     <TableCell align="center">{el.type}</TableCell>
                     <TableCell align="center">{el.category}</TableCell>
                     <TableCell align="center">{el.comment}</TableCell>
-                    <TableCell align="center">{el.sum}</TableCell>
+                    <TableCell align="center">{el.amount}</TableCell>
                     <TableCell align="center">{el.balance}</TableCell>
                   </TableRow>
                 );
