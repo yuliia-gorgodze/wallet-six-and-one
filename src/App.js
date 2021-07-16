@@ -15,6 +15,8 @@ import { useMediaQuery } from 'react-responsive';
 
 import routes from './routes';
 import { authSelectors, authOperations } from './redux/auth';
+import transactionsSelectors from './redux/transactions/transactionSelectors';
+import { getIsLoading } from './redux/modaltransaction/modalTransactionSelector';
 
 const RegistrationPage = lazy(() =>
   import(
@@ -43,16 +45,20 @@ const CurrencyPage = lazy(() =>
 export default function App() {
   const isAuth = useSelector(authSelectors.getIsAuthenticated);
   const isTabletOrMobile = useMediaQuery({ maxWidth: 767 });
-  const isLoading = useSelector(authSelectors.getLoading);
+  const isLoadingAuth = useSelector(authSelectors.getLoading);
+  const isLoadingTransactions = useSelector(transactionsSelectors.getIsLoading);
+  const isLoadingModalTransaction = useSelector(getIsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
 
+  const shouldRenderSpinner =
+    isLoadingAuth || isLoadingTransactions || isLoadingModalTransaction;
   return (
     <>
-      {isLoading && <Spinner />}
+      {shouldRenderSpinner && <Spinner />}
       {isAuth && (
         <>
           <Header />
