@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
-import { MenuItem } from '@material-ui/core';
+import { MenuItem, TextField } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 
 import {
   modalTrancactionIsOpen,
@@ -11,9 +12,6 @@ import {
 } from '../redux/modaltransaction/modalTransactionOperations';
 import style from './componentsCSS/ModalAddTransaction.module.css';
 import './componentsCSS/checkBox.css';
-
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 
 const CssTextField = withStyles({
   root: {
@@ -132,11 +130,12 @@ export default function ModalAddTransaction() {
         .typeError('Это должны быть цифры')
         .required('Это поле обязательно'),
       category: Yup.string().optional(),
-      date: Yup.string().optional(),
+      date: Yup.string().required('Это поле обязательно'),
       comment: Yup.string().max(400, 'Максимум 400 символов').optional(),
     }),
     onSubmit: ({ checkBox, category, transaction, date, comment }) => {
       category = checkBox ? 'income' : category;
+      date = dateFormat(date);
       dispatch(
         addTrancaction({ checkBox, category, transaction, date, comment }),
       );
@@ -153,7 +152,11 @@ export default function ModalAddTransaction() {
     const date = pad(new Date().getDate());
     const month = pad(new Date().getMonth());
     const fullYear = pad(new Date().getFullYear());
-    return `${date}.${month}.${fullYear}`;
+    return `${fullYear}-${month}-${date}`;
+  }
+
+  function dateFormat(date) {
+    return date.split('-').reverse().join('.');
   }
 
   return (
@@ -239,6 +242,7 @@ export default function ModalAddTransaction() {
           id="date"
           type="date"
           defaultValue={values.date}
+          placeholder="dd.mm.yyyy"
         />
       </div>
       <CssTextField
