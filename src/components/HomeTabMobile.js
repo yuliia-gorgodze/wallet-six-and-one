@@ -11,6 +11,7 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core';
+import Pagination from './Pagination';
 import transactionOperations from '../redux/transactions/transactionOperations';
 import transactionSelectors from '../redux/transactions/transactionSelectors';
 import styles from './componentsCSS/HomeTabMobile.module.css';
@@ -29,46 +30,50 @@ export default function HomeTab() {
 
   return (
     <>
-      {result.map(({ id, date, type, category, comment, sum, balance }) => (
-        <TableContainer className={styles.tableContainer}>
-          <Table key={id}>
-            <TableBody>
-              <TableCell
-                style={{
-                  maxWidth: '5px',
-                  backgroundColor: getColor(type),
-                }}
-              ></TableCell>
-              <TableCell>
-                <TableRow>
-                  <TableCell align="left">Дата</TableCell>
-                  <TableCell align="right">{date}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="left">Тип</TableCell>
-                  <TableCell align="right">{type}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="left">Категория</TableCell>
-                  <TableCell align="right">{category}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="left">Комментарии</TableCell>
-                  <TableCell align="right">{comment}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="left">Сумма</TableCell>
-                  <TableCell align="right">{sum}</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="left">Баланс</TableCell>
-                  <TableCell align="right">{balance}</TableCell>
-                </TableRow>
-              </TableCell>
-            </TableBody>
-          </Table>
-        </TableContainer>
-      ))}
+      {result.transactions &&
+        result.transactions.map(
+          ({ id, date, type, category, comment, sum, balance }) => (
+            <TableContainer className={styles.tableContainer}>
+              <Table key={id}>
+                <TableBody>
+                  <TableCell
+                    style={{
+                      maxWidth: '5px',
+                      backgroundColor: getColor(type),
+                    }}
+                  ></TableCell>
+                  <TableCell>
+                    <TableRow>
+                      <TableCell align="left">Дата</TableCell>
+                      <TableCell align="right">{date}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="left">Тип</TableCell>
+                      <TableCell align="right">{type}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="left">Категория</TableCell>
+                      <TableCell align="right">{category}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="left">Комментарии</TableCell>
+                      <TableCell align="right">{comment}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="left">Сумма</TableCell>
+                      <TableCell align="right">{sum}</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell align="left">Баланс</TableCell>
+                      <TableCell align="right">{balance}</TableCell>
+                    </TableRow>
+                  </TableCell>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ),
+        )}
+      <Pagination />
     </>
   );
 }

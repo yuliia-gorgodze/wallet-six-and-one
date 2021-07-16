@@ -13,11 +13,11 @@ import {
 import transactionOperations from '../redux/transactions/transactionOperations';
 import transactionSelectors from '../redux/transactions/transactionSelectors';
 import styles from './componentsCSS/HomeTab.module.css';
+import Pagination from './Pagination';
 
 export default function HomeTab() {
   const dispatch = useDispatch();
   const result = useSelector(transactionSelectors.getAllTransactions);
-  console.log(result, 'result');
 
   useEffect(() => {
     dispatch(transactionOperations.fetchTransactions());
@@ -55,21 +55,23 @@ export default function HomeTab() {
           </TableHead>
           <>
             <TableBody>
-              {result.map(el => {
-                return (
-                  <TableRow className={styles.tableRow}>
-                    <TableCell align="center">{el.date}</TableCell>
-                    <TableCell align="center">{el.type}</TableCell>
-                    <TableCell align="center">{el.category}</TableCell>
-                    <TableCell align="center">{el.comment}</TableCell>
-                    <TableCell align="center">{el.amount}</TableCell>
-                    <TableCell align="center">{el.balance}</TableCell>
-                  </TableRow>
-                );
-              })}
+              {result.transactions &&
+                result.transactions.map(el => {
+                  return (
+                    <TableRow key={el.id} className={styles.tableRow}>
+                      <TableCell align="center">{el.date}</TableCell>
+                      <TableCell align="center">{el.type}</TableCell>
+                      <TableCell align="center">{el.category}</TableCell>
+                      <TableCell align="center">{el.comment}</TableCell>
+                      <TableCell align="center">{el.amount}</TableCell>
+                      <TableCell align="center">{el.balance}</TableCell>
+                    </TableRow>
+                  );
+                })}
             </TableBody>
           </>
         </Table>
+        <Pagination />
       </TableContainer>
     </>
   );

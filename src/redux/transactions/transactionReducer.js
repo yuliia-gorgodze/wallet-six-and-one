@@ -6,9 +6,12 @@ import {
   getTransactionsError,
 } from './transactionActions';
 
-const result = createReducer([], {
-  [getTransactionsSuccess]: (_, { payload }) => payload.transactions,
-});
+const result = createReducer(
+  {},
+  {
+    [getTransactionsSuccess]: (_, { payload }) => payload,
+  },
+);
 const loading = createReducer(false, {
   [getTransactionsRequest]: () => true,
   [getTransactionsSuccess]: () => false,
