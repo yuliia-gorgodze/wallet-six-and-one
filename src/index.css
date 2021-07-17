@@ -95,7 +95,8 @@ h3 {
     /* align-items: flex-start; */
   }
   .sectionPage {
-    padding: 40px 0;
+    padding-top: 110px;
+    min-height: 100vh;
   }
 }
 
