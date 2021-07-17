@@ -87,8 +87,6 @@ function CurrencyExchange() {
     getData();
   }, []);
 
-  console.log(currency);
-
   return (
     <>
       <div className={addStyles.currencyContainer}>

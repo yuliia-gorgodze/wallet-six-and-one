@@ -102,7 +102,6 @@ class Statistic extends Component {
       if (!Object.values(acc).includes(el)) {
         acc[word] = color;
       }
-      console.log(acc, 'acc');
       return acc;
     }, {});
   }
@@ -110,6 +109,7 @@ class Statistic extends Component {
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
+
     return '#' + r.toString(16) + g.toString(16) + b.toString(16);
   }
   getColor() {
