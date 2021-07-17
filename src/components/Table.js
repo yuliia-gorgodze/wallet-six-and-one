@@ -81,6 +81,7 @@ let a = {
   '.': ' ',
 };
 export default function TableStatistic({ color }) {
+  console.log(color, 'props');
   const dispatch = useDispatch();
   const result = useSelector(transactionSelectors.getAllTransactions);
   useEffect(() => {
