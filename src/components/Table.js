@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import transactionOperations from '../redux/transactions/transactionOperations';
 import transactionSelectors from '../redux/transactions/transactionSelectors';
-
+import { getBalance } from '../redux/finance/finance-selectors';
 export default function TableStatistic() {
   const dispatch = useDispatch();
   const result = useSelector(transactionSelectors.getAllTransactions);
@@ -19,18 +19,14 @@ export default function TableStatistic() {
   useEffect(() => {
     dispatch(transactionOperations.fetchTransactions());
   }, [dispatch]);
-
+  const amount = useSelector(getBalance);
   return (
     <div>
       <TableContainer className={style.tableContainer}>
         <Table aria-label="a dense table">
           <TableHead className={style.tableHead}>
             <TableRow className={style.tableRow}>
-              <TableCell
-                className={style.tableCell}
-                // style={{ width: '20%' }}
-                align="left"
-              >
+              <TableCell className={style.tableCell} align="left">
                 Категория
               </TableCell>
               <TableCell className={style.tableCell} align="right">
@@ -40,7 +36,7 @@ export default function TableStatistic() {
           </TableHead>
           <>
             <TableBody>
-              {result.map(el => {
+              {result.transactions.map(el => {
                 return (
                   <TableRow className={style.tableRow}>
                     <TableCell className={style.tableRowElement} align="left">
@@ -61,8 +57,7 @@ export default function TableStatistic() {
           Расходы: <span className={style.balances__spending}>0</span>
         </li>
         <li>
-          Доходы:{' '}
-          <span className={style.balances__income}>{result[9].balance}$</span>
+          Доходы: <span className={style.balances__income}>{amount}$</span>
         </li>
       </ul>
     </div>
