@@ -96,15 +96,13 @@ class Statistic extends Component {
       .join('');
   }
   dataColor() {
-    return this.state.chartData.labels.reduce((acc, el) => {
-      this.state.chartData.datasets[0].backgroundColor.forEach(color => {
-        if (acc[el]) {
-        } else {
-          let word = this.transliterate(el).toLowerCase();
-          console.log(typeof word);
-          acc[word] = color;
-        }
-      });
+    return this.state.chartData.labels.reduce((acc, el, i) => {
+      let word = this.transliterate(el).toLowerCase();
+      let color = this.state.chartData.datasets[0].backgroundColor[i];
+      if (!Object.values(acc).includes(el)) {
+        acc[word] = color;
+      }
+      console.log(acc, 'acc');
       return acc;
     }, {});
   }
