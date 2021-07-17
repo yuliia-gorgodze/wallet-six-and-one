@@ -5,6 +5,75 @@ import Chart from './Diagram';
 import { connect } from 'react-redux';
 import transactionSelectors from '../redux/transactions/transactionSelectors';
 
+let a = {
+  Ё: 'YO',
+  Й: 'I',
+  Ц: 'TS',
+  У: 'U',
+  К: 'K',
+  Е: 'E',
+  Н: 'N',
+  Г: 'G',
+  Ш: 'SH',
+  Щ: 'SCH',
+  З: 'Z',
+  Х: 'H',
+  Ъ: "'",
+  ё: 'yo',
+  й: 'i',
+  ц: 'ts',
+  у: 'u',
+  к: 'k',
+  е: 'e',
+  н: 'n',
+  г: 'g',
+  ш: 'sh',
+  щ: 'sch',
+  з: 'z',
+  х: 'h',
+  ъ: "'",
+  Ф: 'F',
+  Ы: 'I',
+  В: 'V',
+  А: 'a',
+  П: 'P',
+  Р: 'R',
+  О: 'O',
+  Л: 'L',
+  Д: 'D',
+  Ж: 'ZH',
+  Э: 'E',
+  ф: 'f',
+  ы: 'i',
+  в: 'v',
+  а: 'a',
+  п: 'p',
+  р: 'r',
+  о: 'o',
+  л: 'l',
+  д: 'd',
+  ж: 'zh',
+  э: 'e',
+  Я: 'Ya',
+  Ч: 'CH',
+  С: 'S',
+  М: 'M',
+  И: 'I',
+  Т: 'T',
+  Ь: "'",
+  Б: 'B',
+  Ю: 'YU',
+  я: 'ya',
+  ч: 'ch',
+  с: 's',
+  м: 'm',
+  и: 'i',
+  т: 't',
+  ь: "'",
+  б: 'b',
+  ю: 'yu',
+  '.': '',
+};
 class Statistic extends Component {
   constructor() {
     super();
@@ -13,7 +82,31 @@ class Statistic extends Component {
     };
   }
   componentWillMount() {
-    this.getChartData();
+    this.getData();
+  }
+  transliterate(word) {
+    return word
+      .split('')
+      .map(function (char) {
+        if (char === '.') {
+          return;
+        }
+        return a[char] || char;
+      })
+      .join('');
+  }
+  dataColor() {
+    return this.state.chartData.labels.reduce((acc, el) => {
+      this.state.chartData.datasets[0].backgroundColor.forEach(color => {
+        if (acc[el]) {
+        } else {
+          let word = this.transliterate(el).toLowerCase();
+          console.log(typeof word);
+          acc[word] = color;
+        }
+      });
+      return acc;
+    }, {});
   }
   randomColor() {
     let r = Math.floor(Math.random() * 256);
@@ -56,13 +149,12 @@ class Statistic extends Component {
     });
     return amountArray;
   }
-  getChartData() {
+  getData() {
     this.setState({
       chartData: {
         labels: this.getCategory(),
         datasets: [
           {
-            label: 'catogory',
             data: this.getAmount(),
             backgroundColor: this.getColor(),
           },
@@ -83,7 +175,7 @@ class Statistic extends Component {
             />
           </div>
           <div className={style.table}>
-            <Table />
+            <Table color={this.dataColor()} />
           </div>
         </div>
       </div>

@@ -11,15 +11,99 @@ import { useDispatch, useSelector } from 'react-redux';
 import transactionOperations from '../redux/transactions/transactionOperations';
 import transactionSelectors from '../redux/transactions/transactionSelectors';
 import { getBalance } from '../redux/finance/finance-selectors';
-export default function TableStatistic() {
+let a = {
+  Ё: 'YO',
+  Й: 'I',
+  Ц: 'TS',
+  У: 'U',
+  К: 'K',
+  Е: 'E',
+  Н: 'N',
+  Г: 'G',
+  Ш: 'SH',
+  Щ: 'SCH',
+  З: 'Z',
+  Х: 'H',
+  Ъ: "'",
+  ё: 'yo',
+  й: 'i',
+  ц: 'ts',
+  у: 'u',
+  к: 'k',
+  е: 'e',
+  н: 'n',
+  г: 'g',
+  ш: 'sh',
+  щ: 'sch',
+  з: 'z',
+  х: 'h',
+  ъ: "'",
+  Ф: 'F',
+  Ы: 'I',
+  В: 'V',
+  А: 'a',
+  П: 'P',
+  Р: 'R',
+  О: 'O',
+  Л: 'L',
+  Д: 'D',
+  Ж: 'ZH',
+  Э: 'E',
+  ф: 'f',
+  ы: 'i',
+  в: 'v',
+  а: 'a',
+  п: 'p',
+  р: 'r',
+  о: 'o',
+  л: 'l',
+  д: 'd',
+  ж: 'zh',
+  э: 'e',
+  Я: 'Ya',
+  Ч: 'CH',
+  С: 'S',
+  М: 'M',
+  И: 'I',
+  Т: 'T',
+  Ь: "'",
+  Б: 'B',
+  Ю: 'YU',
+  я: 'ya',
+  ч: 'ch',
+  с: 's',
+  м: 'm',
+  и: 'i',
+  т: 't',
+  ь: "'",
+  б: 'b',
+  ю: 'yu',
+  '.': ' ',
+};
+export default function TableStatistic({ color }) {
   const dispatch = useDispatch();
   const result = useSelector(transactionSelectors.getAllTransactions);
-  console.log(result, 'result');
-
   useEffect(() => {
     dispatch(transactionOperations.fetchTransactions());
   }, [dispatch]);
   const amount = useSelector(getBalance);
+  function transliterate(word) {
+    return word
+      .split('')
+      .map(function (char) {
+        if (char === '.') {
+          return;
+        }
+        return a[char] || char;
+      })
+      .join('');
+  }
+  const colorBG = el => {
+    let indexColor = Object.keys(color).indexOf(
+      transliterate(el.category).toLowerCase(),
+    );
+    return Object.values(color).reverse()[indexColor];
+  };
   return (
     <div>
       <TableContainer className={style.tableContainer}>
@@ -42,7 +126,11 @@ export default function TableStatistic() {
                     <TableCell className={style.tableRowElement} align="left">
                       {el.category}
                     </TableCell>
-                    <TableCell className={style.tableRowElement} align="right">
+                    <TableCell
+                      style={{ backgroundColor: colorBG(el) }}
+                      className={style.tableRowElement}
+                      align="right"
+                    >
                       {el.amount}
                     </TableCell>
                   </TableRow>
