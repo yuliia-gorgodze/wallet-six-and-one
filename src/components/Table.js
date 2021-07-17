@@ -81,7 +81,6 @@ let a = {
   '.': ' ',
 };
 export default function TableStatistic({ color }) {
-  console.log(color, 'props');
   const dispatch = useDispatch();
   const result = useSelector(transactionSelectors.getAllTransactions);
   useEffect(() => {
@@ -103,7 +102,7 @@ export default function TableStatistic({ color }) {
     let indexColor = Object.keys(color).indexOf(
       transliterate(el.category).toLowerCase(),
     );
-    return Object.values(color).reverse()[indexColor];
+    return Object.values(color)[indexColor];
   };
   return (
     <div>
@@ -126,12 +125,12 @@ export default function TableStatistic({ color }) {
                   <TableRow className={style.tableRow}>
                     <TableCell className={style.tableRowElement} align="left">
                       {el.category}
+                      <div
+                        style={{ backgroundColor: colorBG(el) }}
+                        className={style.colorCategory}
+                      ></div>
                     </TableCell>
-                    <TableCell
-                      style={{ backgroundColor: colorBG(el) }}
-                      className={style.tableRowElement}
-                      align="right"
-                    >
+                    <TableCell className={style.tableRowElement} align="right">
                       {el.amount}
                     </TableCell>
                   </TableRow>
