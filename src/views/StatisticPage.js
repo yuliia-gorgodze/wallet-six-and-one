@@ -8,7 +8,6 @@ const StatisticPage = () => {
     <section className="sectionPage">
       <div className="mainPage container">
         <SideBar />
-
         <Statistic />
       </div>
     </section>

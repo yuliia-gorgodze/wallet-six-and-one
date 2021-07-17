@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import style from './componentsCSS/Statistic.module.css';
 import Table from './Table';
 import Chart from './Diagram';
+import { connect } from 'react-redux';
+import transactionSelectors from '../redux/transactions/transactionSelectors';
 
 class Statistic extends Component {
   constructor() {
@@ -13,29 +15,65 @@ class Statistic extends Component {
   componentWillMount() {
     this.getChartData();
   }
+  randomColor() {
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 256);
+    let b = Math.floor(Math.random() * 256);
+    return '#' + r.toString(16) + g.toString(16) + b.toString(16);
+  }
+  getColor() {
+    let arrayColor = [];
+    const arrTransactions = this.getCategory().length;
+    console.log(arrTransactions);
+    for (let i = 0; i < arrTransactions; i++) {
+      let color = this.randomColor();
+      arrayColor.push(color);
+    }
+    return arrayColor;
+  }
+  getCategory() {
+    let arrayCategory = [];
+    const transactionsArray = this.props.transactions.transactions;
+    console.log(Array.isArray(transactionsArray));
+    transactionsArray.map(
+      el =>
+        !arrayCategory.includes(el.category) && arrayCategory.push(el.category),
+    );
+    return arrayCategory;
+  }
+  getAmount() {
+    const transactionsArray = this.props.transactions.transactions;
+    const transactionsArrNotRepeat = this.getCategory();
+    let amountArray = [];
+
+    transactionsArrNotRepeat.map(category => {
+      let amount = transactionsArray.reduce((acc, el) => {
+        if (category === el.category) {
+          acc += el.amount;
+        }
+        return acc;
+      }, 0);
+      amountArray.push(amount);
+      return;
+    });
+    return amountArray;
+  }
   getChartData() {
     this.setState({
       chartData: {
-        labels: ['Продукты', 'Такси', 'Бананы', 'Апельсины'],
+        labels: this.getCategory(),
         datasets: [
           {
-            label: 'Population',
-            data: [617594, 181045, 153060, 106519, 105162, 95072],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(255, 159, 64, 0.6)',
-              'rgba(255, 99, 132, 0.6)',
-            ],
+            label: 'catogory',
+            data: this.getAmount(),
+            backgroundColor: this.getColor(),
           },
         ],
       },
     });
   }
   render() {
+    console.log('amount', this.getAmount());
     return (
       <div className={style.statistic}>
         <h1 className={style.tittle}>Статистика</h1>
@@ -55,5 +93,7 @@ class Statistic extends Component {
     );
   }
 }
-
-export default Statistic;
+const mapStateToProps = state => ({
+  transactions: transactionSelectors.getAllTransactions(state),
+});
+export default connect(mapStateToProps, null)(Statistic);
