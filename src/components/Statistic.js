@@ -24,7 +24,6 @@ class Statistic extends Component {
   getColor() {
     let arrayColor = [];
     const arrTransactions = this.getCategory().length;
-    console.log(arrTransactions);
     for (let i = 0; i < arrTransactions; i++) {
       let color = this.randomColor();
       arrayColor.push(color);
@@ -34,7 +33,6 @@ class Statistic extends Component {
   getCategory() {
     let arrayCategory = [];
     const transactionsArray = this.props.transactions.transactions;
-    console.log(Array.isArray(transactionsArray));
     transactionsArray.map(
       el =>
         !arrayCategory.includes(el.category) && arrayCategory.push(el.category),
@@ -73,7 +71,6 @@ class Statistic extends Component {
     });
   }
   render() {
-    console.log('amount', this.getAmount());
     return (
       <div className={style.statistic}>
         <h1 className={style.tittle}>Статистика</h1>
