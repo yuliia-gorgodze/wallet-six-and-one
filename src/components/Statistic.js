@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import style from './componentsCSS/Statistic.module.css';
 import Table from './Table';
 import Chart from './Diagram';
+import StatisticSelects from './StasisticSelects';
 import { connect } from 'react-redux';
 import transactionSelectors from '../redux/transactions/transactionSelectors';
 
@@ -173,6 +174,7 @@ class Statistic extends Component {
             />
           </div>
           <div className={style.table}>
+            <StatisticSelects />
             <Table color={this.dataColor()} />
           </div>
         </div>
