@@ -105,21 +105,21 @@ class Statistic extends Component {
       return acc;
     }, {});
   }
-  randomColor() {
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 256);
-    let b = Math.floor(Math.random() * 256);
-
-    return '#' + r.toString(16) + g.toString(16) + b.toString(16);
-  }
   getColor() {
-    let arrayColor = [];
     const arrTransactions = this.getCategory().length;
-    for (let i = 0; i < arrTransactions; i++) {
-      let color = this.randomColor();
-      arrayColor.push(color);
-    }
-    return arrayColor;
+    const color = [
+      '#24cca7',
+      '#ff6596',
+      '#4a56e2',
+      '#bd5589',
+      '#55bd8c',
+      '#ffc17b',
+      '#fc5f5f',
+      '#84df89',
+      '#8bc3d4',
+      '#b98bd4',
+    ];
+    return color.slice(0, arrTransactions);
   }
   getCategory() {
     let arrayCategory = [];
