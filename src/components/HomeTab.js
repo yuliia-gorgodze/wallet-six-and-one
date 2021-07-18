@@ -14,6 +14,7 @@ import transactionOperations from '../redux/transactions/transactionOperations';
 import transactionSelectors from '../redux/transactions/transactionSelectors';
 import styles from './componentsCSS/HomeTab.module.css';
 import Pagination from './Pagination';
+import numberWithSpaces from '../helpers/numberWithSpaces';
 
 export default function HomeTab() {
   const dispatch = useDispatch();
@@ -60,11 +61,24 @@ export default function HomeTab() {
                   return (
                     <TableRow key={el.id} className={styles.tableRow}>
                       <TableCell align="center">{el.date}</TableCell>
-                      <TableCell align="center">{el.type}</TableCell>
+                      <TableCell align="center">
+                        {el.type === 'DEPOSIT' ? '+' : '-'}
+                      </TableCell>
                       <TableCell align="center">{el.category}</TableCell>
                       <TableCell align="center">{el.comment}</TableCell>
-                      <TableCell align="center">{el.amount}</TableCell>
-                      <TableCell align="center">{el.balance}</TableCell>
+                      <TableCell
+                        className={
+                          el.type === 'DEPOSIT'
+                            ? styles.depositTransaction
+                            : styles.withdrawTransaction
+                        }
+                        align="center"
+                      >
+                        {numberWithSpaces(el.amount)}
+                      </TableCell>
+                      <TableCell align="center">
+                        {numberWithSpaces(el.balance)}
+                      </TableCell>
                     </TableRow>
                   );
                 })}

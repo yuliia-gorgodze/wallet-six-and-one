@@ -16,16 +16,18 @@ export default function Pagination() {
   };
 
   return (
-    <ReactPaginate
-      previousLabel={'Previous'}
-      nextLabel={'Next'}
-      pageCount={pageCount}
-      onPageChange={changePage}
-      containerClassName={styles.paginationBttns}
-      previousLinkClassName={styles.previousBttn}
-      nextLinkClassName={styles.nextBttn}
-      disabledClassName={styles.paginationDisabled}
-      activeClassName={styles.paginationActive}
-    />
+    <div className={styles.paginationContainer}>
+      <ReactPaginate
+        previousLabel={'Previous'}
+        nextLabel={'Next'}
+        pageCount={pageCount}
+        onPageChange={changePage}
+        containerClassName={styles.paginationBttns}
+        previousLinkClassName={styles.previousBttn}
+        nextLinkClassName={styles.nextBttn}
+        disabledClassName={styles.paginationDisabled}
+        activeClassName={styles.paginationActive}
+      />
+    </div>
   );
 }
