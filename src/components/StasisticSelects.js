@@ -41,7 +41,12 @@ export default function StatisticSelects() {
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
 
-  const handleChangeMonth = event => setMonth(event.target.value);
+  const handleChangeMonth = event => {
+    setMonth(event.target.value);
+    if (!year) {
+      setYear(new Date().getFullYear());
+    }
+  };
   const handleChangeYear = event => setYear(event.target.value);
 
   const startDate = new Date().getFullYear() - 1;
@@ -53,8 +58,6 @@ export default function StatisticSelects() {
         <Select
           variant="outlined"
           className={classes.select}
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
           value={month}
           onChange={handleChangeMonth}
           label="Месяц"
@@ -66,7 +69,7 @@ export default function StatisticSelects() {
           }}
         >
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(e => (
-            <MuiMenuItem value={e}>{`${e}-й месяц`}</MuiMenuItem>
+            <MuiMenuItem value={e} key={e}>{`${e}-й месяц`}</MuiMenuItem>
           ))}
         </Select>
       </FormControl>
@@ -75,8 +78,6 @@ export default function StatisticSelects() {
         <Select
           variant="outlined"
           className={classes.select}
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
           value={year}
           onChange={handleChangeYear}
           label="Год"
@@ -89,7 +90,9 @@ export default function StatisticSelects() {
         >
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(e => {
             return (
-              <MuiMenuItem value={startDate + e}>{startDate + e}</MuiMenuItem>
+              <MuiMenuItem value={startDate + e} key={e}>
+                {startDate + e}
+              </MuiMenuItem>
             );
           })}
         </Select>
