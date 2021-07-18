@@ -122,7 +122,7 @@ export default function TableStatistic({ color }) {
             <TableBody>
               {result.transactions.map(el => {
                 return (
-                  <TableRow className={style.tableRow}>
+                  <TableRow className={style.tableRow} key={el.id}>
                     <TableCell className={style.tableRowElement} align="left">
                       {el.category}
                       <div
