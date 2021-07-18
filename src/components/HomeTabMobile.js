@@ -15,6 +15,7 @@ import Pagination from './Pagination';
 import transactionOperations from '../redux/transactions/transactionOperations';
 import transactionSelectors from '../redux/transactions/transactionSelectors';
 import styles from './componentsCSS/HomeTabMobile.module.css';
+import numberWithSpaces from '../helpers/numberWithSpaces';
 
 export default function HomeTab() {
   const dispatch = useDispatch();
@@ -25,14 +26,14 @@ export default function HomeTab() {
   }, [dispatch]);
 
   function getColor(type) {
-    return type === '+' ? '#24CCA7' : '#FF6596';
+    return type === 'DEPOSIT' ? '#24CCA7' : '#FF6596';
   }
 
   return (
     <>
       {result.transactions &&
         result.transactions.map(
-          ({ id, date, type, category, comment, sum, balance }) => (
+          ({ id, date, type, category, comment, amount, balance }) => (
             <TableContainer className={styles.tableContainer}>
               <Table key={id}>
                 <TableBody>
@@ -49,7 +50,9 @@ export default function HomeTab() {
                     </TableRow>
                     <TableRow>
                       <TableCell align="left">Тип</TableCell>
-                      <TableCell align="right">{type}</TableCell>
+                      <TableCell align="right">
+                        {type === 'DEPOSIT' ? '+' : '-'}
+                      </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell align="left">Категория</TableCell>
@@ -61,11 +64,15 @@ export default function HomeTab() {
                     </TableRow>
                     <TableRow>
                       <TableCell align="left">Сумма</TableCell>
-                      <TableCell align="right">{sum}</TableCell>
+                      <TableCell align="right">
+                        {numberWithSpaces(Number(amount))}
+                      </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell align="left">Баланс</TableCell>
-                      <TableCell align="right">{balance}</TableCell>
+                      <TableCell align="right">
+                        {numberWithSpaces(Number(balance))}
+                      </TableCell>
                     </TableRow>
                   </TableCell>
                 </TableBody>

@@ -23,3 +23,13 @@
 .tableHead .tableCell:last-child {
   border-radius: 0 30px 30px 0;
 }
+
+.depositTransaction {
+  color: rgb(53, 206, 167);
+  font-weight: bold;
+}
+
+.withdrawTransaction {
+  color: rgb(255, 101, 150);
+  font-weight: bold;
+}
