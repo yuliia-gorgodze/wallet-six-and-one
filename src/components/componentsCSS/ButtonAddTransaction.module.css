@@ -11,6 +11,7 @@
   background-image: url(../../assets/icons/addTransaction.svg);
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 2;
   transition: transform 250ms ease-out;
   cursor: pointer;
 }

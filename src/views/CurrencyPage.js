@@ -1,6 +1,7 @@
 import React from 'react';
 import Currency from '../components/Currency';
 import SideBar from '../components/SideBar';
+import Footer from '../components/Footer';
 
 function CurrencyPage() {
   return (
@@ -10,6 +11,7 @@ function CurrencyPage() {
 
         <Currency />
       </div>
+      <Footer />
     </section>
   );
 }

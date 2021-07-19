@@ -9,3 +9,9 @@ export const SETMODALLOGOUTSTATESUCCESS = createAction(
 export const SETMODALLOGOUTSTATEERROR = createAction(
   'global/setModalLogoutStateError',
 );
+
+export const setModalFooterRequest = createAction(
+  'global/setModalFooterRequest',
+);
+export const setModalFooterSuccess = createAction('auth/setModalFooterSuccess');
+export const setModalFooterError = createAction('auth/setModalFooterError');

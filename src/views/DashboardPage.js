@@ -4,6 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import SideBar from '../components/SideBar';
 import HomeTab from '../components/HomeTab';
 import HomeTabMobile from '../components/HomeTabMobile';
+import Footer from '../components/Footer';
 
 const DashboardPage = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -14,6 +15,7 @@ const DashboardPage = () => {
         <SideBar />
         {isMobile ? <HomeTabMobile /> : <HomeTab />}
       </div>
+      <Footer />
     </section>
   );
 };
