@@ -2,6 +2,9 @@ import {
   SETMODALLOGOUTSTATEREQUEST,
   SETMODALLOGOUTSTATESUCCESS,
   SETMODALLOGOUTSTATEERROR,
+  setModalFooterRequest,
+  setModalFooterSuccess,
+  setModalFooterError,
 } from './global-actions';
 
 export const setModalLogoutState = modalState => async dispatch => {
@@ -14,5 +17,14 @@ export const setModalLogoutState = modalState => async dispatch => {
     dispatch(SETMODALLOGOUTSTATESUCCESS(data));
   } catch (error) {
     dispatch(SETMODALLOGOUTSTATEERROR(error));
+  }
+};
+
+export const setModalFooterState = modalState => async dispatch => {
+  dispatch(setModalFooterRequest());
+  try {
+    dispatch(setModalFooterSuccess(modalState));
+  } catch (error) {
+    dispatch(setModalFooterError(error));
   }
 };

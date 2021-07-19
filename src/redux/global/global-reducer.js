@@ -4,6 +4,8 @@ import {
   SETMODALLOGOUTSTATEREQUEST,
   SETMODALLOGOUTSTATESUCCESS,
   SETMODALLOGOUTSTATEERROR,
+  setModalFooterSuccess,
+  setModalFooterError,
 } from './global-actions';
 
 const isModalLogoutOpen = createReducer(false, {
@@ -12,6 +14,15 @@ const isModalLogoutOpen = createReducer(false, {
 
 const error = createReducer('', {
   [SETMODALLOGOUTSTATEERROR]: (_, { payload }) => payload.message,
+  [setModalFooterError]: (_, { payload }) => payload.message,
 });
 
-export const global = combineReducers({ isModalLogoutOpen, error });
+const isModalFooter = createReducer(false, {
+  [setModalFooterSuccess]: (_, { payload }) => payload,
+});
+
+export const global = combineReducers({
+  isModalLogoutOpen,
+  isModalFooter,
+  error,
+});
