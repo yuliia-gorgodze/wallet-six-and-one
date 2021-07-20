@@ -4,6 +4,7 @@ import ReactPaginate from 'react-paginate';
 import transactionOperations from '../redux/transactions/transactionOperations';
 import transactionSelectors from '../redux/transactions/transactionSelectors';
 import styles from './componentsCSS/Pagination.module.css';
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons';
 
 export default function Pagination() {
   const dispatch = useDispatch();
@@ -18,8 +19,8 @@ export default function Pagination() {
   return (
     <div className={styles.paginationContainer}>
       <ReactPaginate
-        previousLabel={'Previous'}
-        nextLabel={'Next'}
+        previousLabel={<KeyboardArrowLeft fontSize="small" />}
+        nextLabel={<KeyboardArrowRight fontSize="small" />}
         pageCount={pageCount}
         onPageChange={changePage}
         containerClassName={styles.paginationBttns}
