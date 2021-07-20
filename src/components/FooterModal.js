@@ -60,7 +60,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="https://habr.com/ru/post/468327/"
+                    href="https://www.linkedin.com/in/yuliia-gorgozka-9b0451200/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -170,7 +170,7 @@ export default function ModalComponent({ children }) {
             </li>
             <li className={styles.item}>
               <img src={photo2} alt="developer4" className={styles.img} />
-              <h3 className={styles.title}>Игорь Демьяненко</h3>
+              <h3 className={styles.title}>Shaula Max</h3>
               <p className={styles.subtitle} lang="en">
                 Front-end Developer
               </p>
@@ -178,7 +178,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="https://habr.com/ru/post/468327/"
+                    href="https://www.linkedin.com/in/max-shaula/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -188,7 +188,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="!#"
+                    href=" https://github.com/m6xcom"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -198,7 +198,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="!#"
+                    href="https://habr.com/ru/post/468327/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
