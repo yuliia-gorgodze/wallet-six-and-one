@@ -5,15 +5,18 @@
   list-style: none;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .paginationBttns a {
+  display: inline-flex;
   padding: 10px;
   margin: 8px;
   border-radius: 5px;
   border: 1px solid rgb(110, 120, 232);
   color: rgb(74, 105, 226);
   cursor: pointer;
+  transition: background-color 250ms ease-out, color 250ms ease-out;
 }
 
 .paginationBttns a:hover {
@@ -27,9 +30,15 @@
 }
 
 .paginationDisabled a {
-  /* color: grey; */
   background-color: rgb(110, 120, 232);
-  border: none;
+  border: 1px solid rgb(110, 120, 232);
+  color: white;
+  cursor: not-allowed;
+}
+
+.paginationDisabled a:hover {
+  background-color: rgb(110, 120, 232);
+  border: 1px solid rgb(110, 120, 232);
   color: white;
 }
 
