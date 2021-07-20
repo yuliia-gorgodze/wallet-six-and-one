@@ -64,6 +64,11 @@
 .exitButton__text {
   display: none;
   margin-top: 2px;
+  transition: color 250ms ease-out;
+}
+
+.exitButton:hover .exitButton__text {
+  color: var(--dg-button-color);
 }
 
 @media screen and (min-width: 768px) {
