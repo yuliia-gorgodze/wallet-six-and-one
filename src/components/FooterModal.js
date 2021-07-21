@@ -9,6 +9,7 @@ import styles from './componentsCSS/FooterModal.module.css';
 import photo1 from '../assets/images/dewelopers-team/photo1.jpg';
 import photo2 from '../assets/images/dewelopers-team/photo2.jpg';
 import photo3 from '../assets/images/dewelopers-team/photo3.jpg';
+import photo6 from '../assets/images/dewelopers-team/photo6.jpg';
 
 const useStyles = makeStyles({
   modal: {
@@ -198,7 +199,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="https://habr.com/ru/post/468327/"
+                    href="http://risovach.ru/upload/2014/04/mem/toni-stark_47135944_big_.jpeg"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -247,7 +248,7 @@ export default function ModalComponent({ children }) {
               </ul>
             </li>
             <li className={styles.item}>
-              <img src={photo2} alt="developer6" className={styles.img} />
+              <img src={photo6} alt="developer6" className={styles.img} />
               <h3 className={styles.title}>Игорь Демьяненко</h3>
               <p className={styles.subtitle} lang="en">
                 Back-end Developer
@@ -256,7 +257,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="https://habr.com/ru/post/468327/"
+                    href="https://www.linkedin.com/in/pankovd/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -266,7 +267,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="!#"
+                    href="https://github.com/Dm3583"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -276,7 +277,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="!#"
+                    href="http://risovach.ru/upload/2014/04/mem/toni-stark_47135944_big_.jpeg"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

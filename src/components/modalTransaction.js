@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { MenuItem, TextField } from '@material-ui/core';
+import { MenuItem, TextField, InputAdornment } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import {
@@ -120,7 +120,7 @@ export default function ModalAddTransaction() {
     initialValues: {
       checkBox: false,
       transaction: '',
-      category: 'main',
+      category: '',
       date: getCurrentDate(),
       comment: '',
     },
@@ -201,25 +201,36 @@ export default function ModalAddTransaction() {
       {values.checkBox ? null : (
         <CssSelect
           fullWidth
-          id="select"
           name="category"
           label="Выберите категорию"
-          select
+          type="text"
           value={values.category}
           onChange={handleChange}
           onBlur={handleBlur}
           error={touched.category && Boolean(errors.category)}
           helperText={touched.category && errors.category}
-        >
-          <MenuItem value="main">Основной</MenuItem>
-          <MenuItem value="eat">Еда</MenuItem>
-          <MenuItem value="car">Авто</MenuItem>
-          <MenuItem value="growth">Развитие</MenuItem>
-          <MenuItem value="children">Дети</MenuItem>
-          <MenuItem value="house">Дом</MenuItem>
-          <MenuItem value="education">Образование</MenuItem>
-          <MenuItem value="other">Остальные</MenuItem>
-        </CssSelect>
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="start">
+                <TextField
+                  name="category"
+                  select
+                  value=""
+                  onChange={handleChange}
+                >
+                  <MenuItem value="main">Основной</MenuItem>
+                  <MenuItem value="eat">Еда</MenuItem>
+                  <MenuItem value="car">Авто</MenuItem>
+                  <MenuItem value="growth">Развитие</MenuItem>
+                  <MenuItem value="children">Дети</MenuItem>
+                  <MenuItem value="house">Дом</MenuItem>
+                  <MenuItem value="education">Образование</MenuItem>
+                  <MenuItem value="other">Остальные</MenuItem>
+                </TextField>
+              </InputAdornment>
+            ),
+          }}
+        />
       )}
       <div className={style.quantityAndDate}>
         <CssTextField
