@@ -5,11 +5,7 @@ import {
   ADD_NEW_TRANSACTION_REQUEST,
   ADD_NEW_TRANSACTION_ERROR,
 } from './modalTransactionActions';
-import {
-  FILTERED_TRANSACTION_REQUEST,
-  FILTERED_TRANSACTION_SUCCES,
-  FILTERED_TRANSACTION_ERROR,
-} from '../transactions/transactionActions';
+
 import transactionOperations from '../transactions/transactionOperations';
 import notification from '../../helpers/react-toastify';
 
@@ -44,32 +40,3 @@ export const addTrancaction = transaction => async dispatch => {
     notification.error('Что-то пошло не так!');
   }
 };
-export const filteredMounthAndYearsTransactions =
-  transaction => async dispatch => {
-    console.log(transaction.year, transaction.month);
-    const monthCorrect =
-      transaction.month < 10
-        ? `0${transaction.month}`
-        : String(transaction.month);
-    // dispatch(FILTERED_TRANSACTION_REQUEST())
-    if (transaction.year !== '' && transaction.month !== '') {
-      const year = `&year=${String(transaction.year)}`;
-      const month = `&monht=${String(monthCorrect)}`;
-      try {
-        await axios
-          .get(
-            `${axios.defaults.baseURL}/transactions?&filter=day|month|year|category|amount${month}${year}`,
-          )
-          .then(data => {
-            dispatch(FILTERED_TRANSACTION_SUCCES(data.data.data.transactions));
-            // update table online
-            console.log(data.data.data.transactions);
-          })
-          .catch(er => console.log(er));
-      } catch (error) {
-        console.log(error);
-        dispatch(FILTERED_TRANSACTION_ERROR('Не удалось получить транзакции'));
-        notification.error('Что-то пошло не так!');
-      }
-    }
-  };

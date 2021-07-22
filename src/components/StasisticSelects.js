@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { filteredMounthAndYearsTransactions } from '../redux/modaltransaction/modalTransactionOperations';
+import { filteredMounthAndYearsTransactions } from '../redux/statistic/statistic-operations';
 
 const MuiMenuItem = withStyles({
   root: {
@@ -44,17 +44,30 @@ export default function StatisticSelects() {
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
 
-  useEffect(() => {
-    dispatch(filteredMounthAndYearsTransactions({ month, year }));
-  }, [month, year]);
-
   const handleChangeMonth = event => {
-    setMonth(event.target.value);
+    const { value } = event.target;
+    setMonth(value);
+    const currentYear = new Date().getFullYear();
     if (!year) {
       setYear(String(new Date().getFullYear()));
+      dispatch(
+        filteredMounthAndYearsTransactions({ month: value, year: currentYear }),
+      );
+      return;
     }
+    dispatch(filteredMounthAndYearsTransactions({ month: value, year }));
   };
-  const handleChangeYear = event => setYear(event.target.value);
+  const handleChangeYear = event => {
+    const { value } = event.target;
+    setYear(value);
+    if (!month) {
+      dispatch(
+        filteredMounthAndYearsTransactions({ month: '01', year: value }),
+      );
+      return;
+    }
+    dispatch(filteredMounthAndYearsTransactions({ month, year: value }));
+  };
 
   const startDate = new Date().getFullYear() - 1;
 
