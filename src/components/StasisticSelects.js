@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { filteredMounthAndYearsTransactions } from '../redux/modaltransaction/modalTransactionOperations';
 
 const MuiMenuItem = withStyles({
   root: {
@@ -37,14 +39,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function StatisticSelects() {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
 
+  useEffect(() => {
+    dispatch(filteredMounthAndYearsTransactions({ month, year }));
+  }, [month, year]);
+
   const handleChangeMonth = event => {
     setMonth(event.target.value);
     if (!year) {
-      setYear(new Date().getFullYear());
+      setYear(String(new Date().getFullYear()));
     }
   };
   const handleChangeYear = event => setYear(event.target.value);
@@ -68,22 +75,12 @@ export default function StatisticSelects() {
             },
           }}
         >
-          {[
-            'Январь',
-            'Февраль',
-            'Март',
-            'Апрель',
-            'Май',
-            'Июнь',
-            'Июль',
-            'Август',
-            'Сентябрь',
-            'Октябрь',
-            'Ноябрь',
-            'Декабрь',
-          ].map(e => (
-            <MuiMenuItem value={e} key={e}>{`${e}`}</MuiMenuItem>
-          ))}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(e => {
+            if (e < 10) {
+              return <MuiMenuItem value={e} key={e}>{`0${e}`}</MuiMenuItem>;
+            }
+            return <MuiMenuItem value={e} key={e}>{`${e}`}</MuiMenuItem>;
+          })}
         </Select>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
