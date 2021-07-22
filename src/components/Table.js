@@ -10,6 +10,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import statisticSelectors from '../redux/statistic/statistic-selectors';
 import { filteredMounthAndYearsTransactions } from '../redux/statistic/statistic-operations';
 import { getBalance } from '../redux/finance/finance-selectors';
+import numberWithSpaces from '../helpers/numberWithSpaces';
+
 let a = {
   Ё: 'YO',
   Й: 'I',
@@ -83,6 +85,8 @@ export default function TableStatistic({ color }) {
   const dispatch = useDispatch();
   const result = useSelector(statisticSelectors.getAllTransactions);
 
+  console.log('RESULT', result);
+
   useEffect(() => {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
@@ -112,6 +116,63 @@ export default function TableStatistic({ color }) {
     );
     return Object.values(color)[indexColor];
   };
+
+  console.log(result);
+
+  function getWithdrawTransactions() {
+    let transactionArr = [];
+
+    result.transactions.map(el => {
+      if (el.category !== 'Доходы') {
+        transactionArr.push(el);
+      }
+    });
+
+    return transactionArr;
+  }
+
+  // function getFilteredData() {
+  //   return result.transactions;
+  // }
+
+  function getFilteredData() {
+    var holder = {};
+
+    getWithdrawTransactions().forEach(function (d) {
+      if (holder.hasOwnProperty(d.category)) {
+        holder[d.category] = holder[d.category] + d.amount;
+      } else {
+        holder[d.category] = d.amount;
+      }
+    });
+
+    var newTransactionArray = [];
+
+    for (let prop in holder) {
+      newTransactionArray.push({ category: prop, amount: holder[prop] });
+    }
+
+    return newTransactionArray;
+  }
+
+  function getExpenses() {
+    return getWithdrawTransactions().reduce(function (prev, cur) {
+      return prev + cur.amount;
+    }, 0);
+  }
+
+  function getIncome() {
+    return result.transactions
+      .filter(el => {
+        if (el.category === 'Доходы') {
+          return el;
+        }
+      })
+      .reduce(function (prev, cur) {
+        return prev + cur.amount;
+      }, 0);
+  }
+
   return (
     <div>
       <TableContainer className={style.tableContainer}>
@@ -128,8 +189,8 @@ export default function TableStatistic({ color }) {
           </TableHead>
           <>
             <TableBody>
-              {result.transactions &&
-                result.transactions.map(el => {
+              {getFilteredData() &&
+                getFilteredData().map(el => {
                   return (
                     <TableRow className={style.tableRow} key={el.id}>
                       <TableCell className={style.tableRowElement} align="left">
@@ -143,7 +204,7 @@ export default function TableStatistic({ color }) {
                         className={style.tableRowElement}
                         align="right"
                       >
-                        {el.amount}
+                        {numberWithSpaces(el.amount)}
                       </TableCell>
                     </TableRow>
                   );
@@ -154,10 +215,16 @@ export default function TableStatistic({ color }) {
       </TableContainer>
       <ul className={style.balances}>
         <li>
-          Расходы: <span className={style.balances__spending}>0</span>
+          Расходы:{' '}
+          <span className={style.balances__spending}>
+            {numberWithSpaces(getExpenses())}
+          </span>
         </li>
         <li>
-          Доходы: <span className={style.balances__income}>{amount}$</span>
+          Доходы:{' '}
+          <span className={style.balances__income}>
+            {numberWithSpaces(getIncome())}
+          </span>
         </li>
       </ul>
     </div>
