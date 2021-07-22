@@ -6,9 +6,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import style from './componentsCSS/Table.module.css';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import transactionOperations from '../redux/transactions/transactionOperations';
+import { useSelector } from 'react-redux';
 import transactionSelectors from '../redux/transactions/transactionSelectors';
 import { getBalance } from '../redux/finance/finance-selectors';
 let a = {
@@ -81,11 +79,8 @@ let a = {
   '.': ' ',
 };
 export default function TableStatistic({ color }) {
-  const dispatch = useDispatch();
   const result = useSelector(transactionSelectors.getAllTransactions);
-  useEffect(() => {
-    dispatch(transactionOperations.fetchTransactions());
-  }, [dispatch]);
+
   const amount = useSelector(getBalance);
   function transliterate(word) {
     return word
