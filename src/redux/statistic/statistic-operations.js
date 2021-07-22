@@ -12,7 +12,7 @@ export const filteredMounthAndYearsTransactions =
 
     try {
       const filteredTransactions = await axios.get(
-        `/transactions?&filter=day|month|year|category|amount&monht=${monthCorrect}&year=${String(
+        `/transactions?&filter=day|month|year|category|amount&month=${monthCorrect}&year=${String(
           transaction.year,
         )}`,
       );
