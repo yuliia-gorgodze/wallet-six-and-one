@@ -68,8 +68,21 @@ export default function StatisticSelects() {
             },
           }}
         >
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(e => (
-            <MuiMenuItem value={e} key={e}>{`${e}-й месяц`}</MuiMenuItem>
+          {[
+            'Январь',
+            'Февраль',
+            'Март',
+            'Апрель',
+            'Май',
+            'Июнь',
+            'Июль',
+            'Август',
+            'Сентябрь',
+            'Октябрь',
+            'Ноябрь',
+            'Декабрь',
+          ].map(e => (
+            <MuiMenuItem value={e} key={e}>{`${e}`}</MuiMenuItem>
           ))}
         </Select>
       </FormControl>

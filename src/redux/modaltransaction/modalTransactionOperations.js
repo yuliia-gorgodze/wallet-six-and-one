@@ -7,6 +7,7 @@ import {
 } from './modalTransactionActions';
 import transactionOperations from '../transactions/transactionOperations';
 import notification from '../../helpers/react-toastify';
+import transitions from '@material-ui/core/styles/transitions';
 
 export const modalTrancactionIsOpen = modalState => async dispatch => {
   dispatch(MODAL_IS_OPEN(modalState));
@@ -14,7 +15,9 @@ export const modalTrancactionIsOpen = modalState => async dispatch => {
 
 export const addTrancaction = transaction => async dispatch => {
   const result = {
-    date: transaction.date,
+    year: transaction.year,
+    month: transaction.month,
+    day: transaction.day,
     type: transaction.checkBox ? 'DEPOSIT' : 'WITHDRAW',
     category: transaction.category,
     comment: transaction.comment,
@@ -23,6 +26,7 @@ export const addTrancaction = transaction => async dispatch => {
   dispatch(ADD_NEW_TRANSACTION_REQUEST());
   try {
     await axios
+
       .post(`${axios.defaults.baseURL}/transactions`, result)
       .then(data => {
         dispatch(ADD_NEW_TRANSACTION_SUCCES(data.data.data.transaction));

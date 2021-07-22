@@ -162,6 +162,7 @@ class Statistic extends Component {
     });
   }
   render() {
+    console.log('statistic');
     return (
       <div className={style.statistic}>
         <h1 className={style.tittle}>Статистика</h1>
