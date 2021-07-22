@@ -10,9 +10,8 @@ import {
   FILTERED_TRANSACTION_SUCCES,
   FILTERED_TRANSACTION_ERROR,
 } from '../transactions/transactionActions';
-import transactionOperations from '../transactions/transactionReducer';
+import transactionOperations from '../transactions/transactionOperations';
 import notification from '../../helpers/react-toastify';
-import transitions from '@material-ui/core/styles/transitions';
 
 export const modalTrancactionIsOpen = modalState => async dispatch => {
   dispatch(MODAL_IS_OPEN(modalState));

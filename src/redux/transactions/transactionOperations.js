@@ -12,9 +12,7 @@ const fetchTransactions =
 
     try {
       const { data } = await axios.get(`/transactions?limit=5&page=${page}`);
-      // console.log(data.data);
 
-      // console.log(data, 'data');
       dispatch(getTransactionsSuccess(data.data));
     } catch (error) {
       dispatch(getTransactionsError(error));

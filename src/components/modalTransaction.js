@@ -134,10 +134,12 @@ export default function ModalAddTransaction() {
         .required('Это поле обязательно'),
       category: Yup.string().optional(),
       date: Yup.string().required('Это поле обязательно'),
-      comment: Yup.string().max(400, 'Максимум 400 символов').optional(),
+      comment: Yup.string()
+        .max(400, 'Максимум 400 символов')
+        .required('Это поле обязательно'),
     }),
     onSubmit: ({ checkBox, category, transaction, date, comment }) => {
-      category = checkBox ? 'income' : category;
+      category = checkBox ? 'Доходы' : category;
       date = dateFormat(date);
       let year = date.year.join('');
       let month = date.month.join('');
@@ -253,14 +255,14 @@ export default function ModalAddTransaction() {
                   value=""
                   onChange={handleChange}
                 >
-                  <MenuItem value="main">Основной</MenuItem>
-                  <MenuItem value="eat">Еда</MenuItem>
-                  <MenuItem value="car">Авто</MenuItem>
-                  <MenuItem value="growth">Развитие</MenuItem>
-                  <MenuItem value="children">Дети</MenuItem>
-                  <MenuItem value="house">Дом</MenuItem>
-                  <MenuItem value="education">Образование</MenuItem>
-                  <MenuItem value="other">Остальные</MenuItem>
+                  <MenuItem value="Основной">Основной</MenuItem>
+                  <MenuItem value="Еда">Еда</MenuItem>
+                  <MenuItem value="Авто">Авто</MenuItem>
+                  <MenuItem value="Развитие">Развитие</MenuItem>
+                  <MenuItem value="Дети">Дети</MenuItem>
+                  <MenuItem value="Дом">Дом</MenuItem>
+                  <MenuItem value="Образование">Образование</MenuItem>
+                  <MenuItem value="Остальные">Остальные</MenuItem>
                 </TextField>
               </InputAdornment>
             ),
