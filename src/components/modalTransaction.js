@@ -299,7 +299,7 @@ export default function ModalAddTransaction() {
         id="coment"
         name="comment"
         type="text"
-        placeholder="Коментарий"
+        placeholder="Комментарий"
         value={values.comment}
         onChange={handleChange}
         onBlur={handleBlur}
