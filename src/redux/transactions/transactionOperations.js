@@ -11,7 +11,9 @@ const fetchTransactions =
     dispatch(getTransactionsRequest());
 
     try {
-      const { data } = await axios.get(`/transactions?limit=5&page=${page}`);
+      const { data } = await axios.get(
+        `/transactions?limit=5&page=${page}&sortByDesk=createdAt`,
+      );
 
       dispatch(getTransactionsSuccess(data.data));
     } catch (error) {
