@@ -123,6 +123,9 @@ export default function ModalAddTransaction() {
       category: '',
       date: getCurrentDate(),
       comment: '',
+      year: '',
+      month: '',
+      day: '',
     },
     validationSchema: Yup.object({
       checkBox: Yup.boolean(),
@@ -136,9 +139,21 @@ export default function ModalAddTransaction() {
     onSubmit: ({ checkBox, category, transaction, date, comment }) => {
       category = checkBox ? 'income' : category;
       date = dateFormat(date);
+      let year = date.year.join('');
+      let month = date.month.join('');
+      let day = date.day.join('');
       dispatch(
-        addTrancaction({ checkBox, category, transaction, date, comment }),
+        addTrancaction({
+          checkBox,
+          category,
+          transaction,
+          year,
+          month,
+          day,
+          comment,
+        }),
       );
+      // console.log({ checkBox, category, transaction, year, month, day, comment });
       resetForm();
       closeModal();
     },
@@ -156,7 +171,27 @@ export default function ModalAddTransaction() {
   }
 
   function dateFormat(date) {
-    return date.split('-').reverse().join('.');
+    const parseDate = date.split('').reduce(
+      (acc, el, i) => {
+        if (i < 4) {
+          acc.year.push(el);
+        }
+        if (i >= 5 && i < 7) {
+          acc.month.push(el);
+        }
+        if (i >= 8 && i < 10) {
+          acc.day.push(el);
+        }
+
+        return acc;
+      },
+      {
+        year: [],
+        month: [],
+        day: [],
+      },
+    );
+    return parseDate;
   }
 
   return (
