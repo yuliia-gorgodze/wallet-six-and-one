@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,8 +6,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import style from './componentsCSS/Table.module.css';
-import { useSelector } from 'react-redux';
-import transactionSelectors from '../redux/transactions/transactionSelectors';
+import { useSelector, useDispatch } from 'react-redux';
+import statisticSelectors from '../redux/statistic/statistic-selectors';
+import { filteredMounthAndYearsTransactions } from '../redux/statistic/statistic-operations';
 import { getBalance } from '../redux/finance/finance-selectors';
 let a = {
   Ё: 'YO',
@@ -79,7 +80,19 @@ let a = {
   '.': ' ',
 };
 export default function TableStatistic({ color }) {
-  const result = useSelector(transactionSelectors.getAllTransactions);
+  const dispatch = useDispatch();
+  const result = useSelector(statisticSelectors.getAllTransactions);
+
+  useEffect(() => {
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+    dispatch(
+      filteredMounthAndYearsTransactions({
+        month: currentMonth,
+        year: currentYear,
+      }),
+    );
+  }, [dispatch]);
 
   const amount = useSelector(getBalance);
   function transliterate(word) {
@@ -115,22 +128,26 @@ export default function TableStatistic({ color }) {
           </TableHead>
           <>
             <TableBody>
-              {result.transactions.map(el => {
-                return (
-                  <TableRow className={style.tableRow} key={el.id}>
-                    <TableCell className={style.tableRowElement} align="left">
-                      {el.category}
-                      <div
-                        style={{ backgroundColor: colorBG(el) }}
-                        className={style.colorCategory}
-                      ></div>
-                    </TableCell>
-                    <TableCell className={style.tableRowElement} align="right">
-                      {el.amount}
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+              {result.transactions &&
+                result.transactions.map(el => {
+                  return (
+                    <TableRow className={style.tableRow} key={el.id}>
+                      <TableCell className={style.tableRowElement} align="left">
+                        {el.category}
+                        <div
+                          style={{ backgroundColor: colorBG(el) }}
+                          className={style.colorCategory}
+                        ></div>
+                      </TableCell>
+                      <TableCell
+                        className={style.tableRowElement}
+                        align="right"
+                      >
+                        {el.amount}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
             </TableBody>
           </>
         </Table>
