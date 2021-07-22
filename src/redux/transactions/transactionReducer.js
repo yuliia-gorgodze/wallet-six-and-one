@@ -4,6 +4,9 @@ import {
   getTransactionsRequest,
   getTransactionsSuccess,
   getTransactionsError,
+  FILTERED_TRANSACTION_REQUEST,
+  FILTERED_TRANSACTION_SUCCES,
+  FILTERED_TRANSACTION_ERROR,
 } from './transactionActions';
 
 const result = createReducer(
