@@ -165,7 +165,7 @@ class Statistic extends Component {
     console.log('statistic');
     return (
       <div className={style.statistic}>
-        <h1 className={style.tittle}>Статистика</h1>
+        <h1 className={style.title}>Статистика</h1>
         <div className={style.statisticContainer}>
           <div className={style.diagram}>
             <Chart
