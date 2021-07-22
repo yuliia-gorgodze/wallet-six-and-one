@@ -60,7 +60,7 @@ export default function HomeTab() {
                 result.transactions.map(el => {
                   return (
                     <TableRow key={el.id} className={styles.tableRow}>
-                      <TableCell align="center">{el.date}</TableCell>
+                      <TableCell align="center">{`${el.day}.${el.month}.${el.year}`}</TableCell>
                       <TableCell align="center">
                         {el.type === 'DEPOSIT' ? '+' : '-'}
                       </TableCell>
