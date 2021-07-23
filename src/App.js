@@ -17,7 +17,6 @@ import routes from './routes';
 import { authSelectors, authOperations } from './redux/auth';
 import transactionsSelectors from './redux/transactions/transactionSelectors';
 import { getIsLoading } from './redux/modaltransaction/modalTransactionSelector';
-import { filteredMounthAndYearsTransactions } from './redux/statistic/statistic-operations';
 import statisticSelectors from './redux/statistic/statistic-selectors';
 
 const RegistrationPage = lazy(() =>
@@ -57,14 +56,6 @@ export default function App() {
 
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
-    const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth();
-    dispatch(
-      filteredMounthAndYearsTransactions({
-        month: currentMonth,
-        year: currentYear,
-      }),
-    );
   }, [dispatch]);
 
   const shouldRenderSpinner =

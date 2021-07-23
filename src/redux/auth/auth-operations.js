@@ -1,6 +1,7 @@
 import axios from 'axios';
 import authActions from './auth-actions';
 import notification from '../../helpers/react-toastify';
+import { filteredMounthAndYearsTransactions } from '../statistic/statistic-operations';
 
 axios.defaults.baseURL =
   'https://fs25on-team7-wallet-backend.herokuapp.com/api';
@@ -13,6 +14,9 @@ const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
+
+const currentYear = new Date().getFullYear();
+const currentMonth = new Date().getMonth();
 
 const register = credentials => async dispatch => {
   const { email, password } = credentials;
@@ -40,6 +44,13 @@ const logIn = credentials => async dispatch => {
 
     dispatch(authActions.loginSuccess(response.data.data));
 
+    dispatch(
+      filteredMounthAndYearsTransactions({
+        month: currentMonth,
+        year: currentYear,
+      }),
+    );
+
     notification.sucess('Успех!');
   } catch (error) {
     dispatch(authActions.loginError(error.message));
@@ -59,6 +70,13 @@ const getCurrentUser = () => async (dispatch, getState) => {
     const response = await axios.get('/users/current');
 
     dispatch(authActions.getCurrentUserSuccess(response.data.data));
+
+    dispatch(
+      filteredMounthAndYearsTransactions({
+        month: currentMonth,
+        year: currentYear,
+      }),
+    );
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
     notification.warning('Время сессии истекло. Пожалуйста, войдите заново.');

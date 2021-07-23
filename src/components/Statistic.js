@@ -4,7 +4,7 @@ import Table from './Table';
 import Chart from './Diagram';
 import StatisticSelects from './StasisticSelects';
 import { connect } from 'react-redux';
-import transactionSelectors from '../redux/transactions/transactionSelectors';
+import statisticSelectors from '../redux/statistic/statistic-selectors';
 
 let a = {
   Ё: 'YO',
@@ -162,7 +162,6 @@ class Statistic extends Component {
     });
   }
   render() {
-    console.log('statistic');
     return (
       <div className={style.statistic}>
         <h1 className={style.title}>Статистика</h1>
@@ -184,6 +183,6 @@ class Statistic extends Component {
   }
 }
 const mapStateToProps = state => ({
-  transactions: transactionSelectors.getAllTransactions(state),
+  transactions: statisticSelectors.getAllTransactions(state),
 });
 export default connect(mapStateToProps, null)(Statistic);
