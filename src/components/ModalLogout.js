@@ -30,7 +30,7 @@ export default function ModalLogout() {
             <button
               onClick={() => dispatch(authOperations.logOut())}
               data-closemodal
-              className={style.modal__button}
+              className={style.button__submit}
               type="button"
             >
               Да
@@ -39,7 +39,7 @@ export default function ModalLogout() {
           <li>
             <button
               data-closemodal
-              className={style.modal__button}
+              className={style.button__undo}
               type="button"
             >
               Нет
