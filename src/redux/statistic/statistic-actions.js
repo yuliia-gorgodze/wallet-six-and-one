@@ -1,17 +1,17 @@
 import { createAction } from '@reduxjs/toolkit';
 
 export const FILTERED_TRANSACTION_REQUEST = createAction(
-  'modaltransaction/addNewTransactionRequest',
+  'selectTransaction/filterTransactionRequest',
 );
-export const FILTERED_TRANSACTION_SUCCSESS = createAction(
-  'modaltransaction/addNewTransactionSecces',
+export const FILTERED_TRANSACTION_SUCCESS = createAction(
+  'selectTransaction/filterTransactionSucces',
 );
 export const FILTERED_TRANSACTION_ERROR = createAction(
-  'modaltransaction/addNewTransactionError',
+  'selectTransaction/filterTransactionError',
 );
 // eslint-disable-next-line
 export default {
   FILTERED_TRANSACTION_REQUEST,
-  FILTERED_TRANSACTION_SUCCSESS,
+  FILTERED_TRANSACTION_SUCCESS,
   FILTERED_TRANSACTION_ERROR,
 };

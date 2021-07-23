@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,9 +6,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import style from './componentsCSS/Table.module.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import statisticSelectors from '../redux/statistic/statistic-selectors';
-import { filteredMounthAndYearsTransactions } from '../redux/statistic/statistic-operations';
 import { getBalance } from '../redux/finance/finance-selectors';
 import numberWithSpaces from '../helpers/numberWithSpaces';
 
@@ -82,21 +81,7 @@ let a = {
   '.': ' ',
 };
 export default function TableStatistic({ color }) {
-  const dispatch = useDispatch();
   const result = useSelector(statisticSelectors.getAllTransactions);
-
-  console.log('RESULT', result);
-
-  useEffect(() => {
-    const currentYear = new Date().getFullYear();
-    const currentMonth = new Date().getMonth();
-    dispatch(
-      filteredMounthAndYearsTransactions({
-        month: currentMonth,
-        year: currentYear,
-      }),
-    );
-  }, [dispatch]);
 
   const amount = useSelector(getBalance);
   function transliterate(word) {
@@ -116,8 +101,6 @@ export default function TableStatistic({ color }) {
     );
     return Object.values(color)[indexColor];
   };
-
-  console.log(result);
 
   function getWithdrawTransactions() {
     let transactionArr = [];
@@ -189,26 +172,22 @@ export default function TableStatistic({ color }) {
           </TableHead>
           <>
             <TableBody>
-              {getFilteredData() &&
-                getFilteredData().map(el => {
-                  return (
-                    <TableRow className={style.tableRow} key={el.id}>
-                      <TableCell className={style.tableRowElement} align="left">
-                        {el.category}
-                        <div
-                          style={{ backgroundColor: colorBG(el) }}
-                          className={style.colorCategory}
-                        ></div>
-                      </TableCell>
-                      <TableCell
-                        className={style.tableRowElement}
-                        align="right"
-                      >
-                        {numberWithSpaces(el.amount)}
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
+              {getFilteredData().map((el, i) => {
+                return (
+                  <TableRow className={style.tableRow} key={i}>
+                    <TableCell className={style.tableRowElement} align="left">
+                      {el.category}
+                      <div
+                        style={{ backgroundColor: colorBG(el) }}
+                        className={style.colorCategory}
+                      ></div>
+                    </TableCell>
+                    <TableCell className={style.tableRowElement} align="right">
+                      {numberWithSpaces(el.amount)}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </>
         </Table>

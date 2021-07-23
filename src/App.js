@@ -17,6 +17,8 @@ import routes from './routes';
 import { authSelectors, authOperations } from './redux/auth';
 import transactionsSelectors from './redux/transactions/transactionSelectors';
 import { getIsLoading } from './redux/modaltransaction/modalTransactionSelector';
+import { filteredMounthAndYearsTransactions } from './redux/statistic/statistic-operations';
+import statisticSelectors from './redux/statistic/statistic-selectors';
 
 const RegistrationPage = lazy(() =>
   import(
@@ -48,14 +50,28 @@ export default function App() {
   const isLoadingAuth = useSelector(authSelectors.getLoading);
   const isLoadingTransactions = useSelector(transactionsSelectors.getIsLoading);
   const isLoadingModalTransaction = useSelector(getIsLoading);
+  const isLoadingFilterTransaction = useSelector(
+    statisticSelectors.getIsLoading,
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
+    dispatch(
+      filteredMounthAndYearsTransactions({
+        month: currentMonth,
+        year: currentYear,
+      }),
+    );
   }, [dispatch]);
 
   const shouldRenderSpinner =
-    isLoadingAuth || isLoadingTransactions || isLoadingModalTransaction;
+    isLoadingAuth ||
+    isLoadingTransactions ||
+    isLoadingModalTransaction ||
+    isLoadingFilterTransaction;
   return (
     <>
       {shouldRenderSpinner && <Spinner />}

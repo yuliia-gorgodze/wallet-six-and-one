@@ -18,7 +18,7 @@ export const filteredMounthAndYearsTransactions =
       );
 
       dispatch(
-        statisticActions.FILTERED_TRANSACTION_SUCCSESS(
+        statisticActions.FILTERED_TRANSACTION_SUCCESS(
           filteredTransactions.data.data,
         ),
       );
