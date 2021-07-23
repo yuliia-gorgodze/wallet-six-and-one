@@ -44,14 +44,22 @@
 
 .buttonsList {
   list-style: none;
-  display: flex;
   justify-content: center;
   margin-bottom: 0px;
   margin-top: 0px;
 }
 
 .buttonsList > li:first-child {
-  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .buttonsList {
+    display: flex;
+  }
+  .buttonsList > li:first-child {
+    margin-right: 15px;
+  }
 }
 
 .button {
