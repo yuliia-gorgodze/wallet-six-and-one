@@ -33,7 +33,17 @@ export default function HomeTab() {
     <>
       {result.transactions &&
         result.transactions.map(
-          ({ id, date, type, category, comment, amount, balance }) => (
+          ({
+            id,
+            day,
+            month,
+            year,
+            type,
+            category,
+            comment,
+            amount,
+            balance,
+          }) => (
             <TableContainer className={styles.tableContainer}>
               <Table key={id}>
                 <TableBody>
@@ -46,7 +56,7 @@ export default function HomeTab() {
                   <TableCell>
                     <TableRow>
                       <TableCell align="left">Дата</TableCell>
-                      <TableCell align="right">{date}</TableCell>
+                      <TableCell align="right">{`${day}.${month}.${year}`}</TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell align="left">Тип</TableCell>
