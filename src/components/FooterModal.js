@@ -94,7 +94,7 @@ export default function ModalComponent({ children }) {
             </li>
             <li className={styles.item}>
               <img src={photo2} alt="developer2" className={styles.img} />
-              <h3 className={styles.title}>Олександер Помалин</h3>
+              <h3 className={styles.title}>Александр Помалин</h3>
               <p className={styles.subtitle} lang="en">
                 Scrum Master <br />
                 Back-end Developer
