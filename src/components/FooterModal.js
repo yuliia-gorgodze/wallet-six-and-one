@@ -9,6 +9,8 @@ import styles from './componentsCSS/FooterModal.module.css';
 import photo1 from '../assets/images/dewelopers-team/photo1.jpg';
 import photo2 from '../assets/images/dewelopers-team/photo2.jpg';
 import photo3 from '../assets/images/dewelopers-team/photo3.jpg';
+import photo4 from '../assets/images/dewelopers-team/photo4.jpg';
+import photo5 from '../assets/images/dewelopers-team/photo5.jpg';
 import photo6 from '../assets/images/dewelopers-team/photo6.jpg';
 
 const useStyles = makeStyles({
@@ -92,7 +94,7 @@ export default function ModalComponent({ children }) {
             </li>
             <li className={styles.item}>
               <img src={photo2} alt="developer2" className={styles.img} />
-              <h3 className={styles.title}>Игорь Демьяненко</h3>
+              <h3 className={styles.title}>Олександер Помалин</h3>
               <p className={styles.subtitle} lang="en">
                 Scrum Master <br />
                 Back-end Developer
@@ -101,7 +103,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="https://habr.com/ru/post/468327/"
+                    href="https://www.linkedin.com/in/oleksandr-pomalin/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -111,7 +113,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="!#"
+                    href="https://github.com/krasmong"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -121,7 +123,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="!#"
+                    href="https://www.instagram.com/ol_pom/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -170,8 +172,8 @@ export default function ModalComponent({ children }) {
               </ul>
             </li>
             <li className={styles.item}>
-              <img src={photo2} alt="developer4" className={styles.img} />
-              <h3 className={styles.title}>Shaula Max</h3>
+              <img src={photo4} alt="developer4" className={styles.img} />
+              <h3 className={styles.title}>Макс Шаула</h3>
               <p className={styles.subtitle} lang="en">
                 Front-end Developer
               </p>
@@ -209,8 +211,8 @@ export default function ModalComponent({ children }) {
               </ul>
             </li>
             <li className={styles.item}>
-              <img src={photo2} alt="developer5" className={styles.img} />
-              <h3 className={styles.title}>Игорь Демьяненко</h3>
+              <img src={photo5} alt="developer5" className={styles.img} />
+              <h3 className={styles.title}>Михаил Бородай</h3>
               <p className={styles.subtitle} lang="en">
                 Front-end Developer
               </p>
@@ -218,7 +220,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="https://habr.com/ru/post/468327/"
+                    href="http://linkedin.com/in/mikhail-borodai-36ab2686"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -228,7 +230,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="!#"
+                    href="https://github.com/mborodaj"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -238,7 +240,7 @@ export default function ModalComponent({ children }) {
                 <li>
                   <a
                     className={styles.link}
-                    href="!#"
+                    href="https://instagtam.com/mboroday"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

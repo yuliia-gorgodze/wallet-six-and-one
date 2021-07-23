@@ -39,6 +39,7 @@
   font-family: 'Circe-regular';
   font-size: 17px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .buttonsList {
@@ -53,23 +54,57 @@
   margin-right: 15px;
 }
 
-.modal__button {
-  font-family: 'Circe-regular';
-  font-size: 15px;
-  padding: 3px 7px;
-  color: var(--bg-form-privat);
-  background: #ffffff;
-  border: 1px solid var(--bg-form-privat);
-  box-sizing: content-box;
-  border-radius: 10px;
-  transition: all ease-in-out 300ms;
+.button {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+  padding: 11px 0;
+  border: 1px solid transparent;
+
+  border-radius: 20px;
+
+  font-family: 'Circe-regular', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background-color 250ms ease-out, color 250ms ease-out;
+
+  cursor: pointer;
 }
 
-.modal__button:hover {
-  cursor: pointer;
-  background: var(--dg-button-color);
-  border-color: var(--dg-button-color);
-  color: #ffffff;
+.button + .button {
+  margin-top: 20px;
+}
+
+.button__undo {
+  composes: button;
+  background-color: var(--dg-button-color);
+  color: var(--bg-color-secondary);
+}
+
+.button__undo:hover,
+.button__undo:focus {
+  background-color: var(--bg-color-secondary);
+  color: var(--dg-button-color);
+  border: 1px solid var(--dg-button-color);
+}
+
+.button__submit {
+  composes: button;
+  color: var(--bg-form-privat);
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--bg-form-privat);
+}
+
+.button__submit:hover,
+.button__submit:focus {
+  background-color: var(--bg-form-privat);
+  color: var(--bg-color-secondary);
 }
 
 @media screen and (min-width: 768px) {

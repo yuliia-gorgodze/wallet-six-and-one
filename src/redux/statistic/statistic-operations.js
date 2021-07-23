@@ -1,6 +1,5 @@
 import axios from 'axios';
 import statisticActions from './statistic-actions';
-import notification from '../../helpers/react-toastify';
 
 export const filteredMounthAndYearsTransactions =
   transaction => async dispatch => {
@@ -18,13 +17,12 @@ export const filteredMounthAndYearsTransactions =
       );
 
       dispatch(
-        statisticActions.FILTERED_TRANSACTION_SUCCSESS(
+        statisticActions.FILTERED_TRANSACTION_SUCCESS(
           filteredTransactions.data.data,
         ),
       );
     } catch (error) {
       console.log(error);
       dispatch(statisticActions.FILTERED_TRANSACTION_ERROR(error.message));
-      notification.error('Что-то пошло не так!');
     }
   };
