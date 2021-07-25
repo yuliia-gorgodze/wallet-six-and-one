@@ -112,10 +112,6 @@ export default function TableStatistic({ color }) {
     return transactionArr;
   }
 
-  // function getFilteredData() {
-  //   return result.transactions;
-  // }
-
   function getFilteredData() {
     var holder = {};
 
