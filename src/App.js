@@ -18,7 +18,6 @@ import { authSelectors, authOperations } from './redux/auth';
 import transactionsSelectors from './redux/transactions/transactionSelectors';
 import { getIsLoading } from './redux/modaltransaction/modalTransactionSelector';
 import statisticSelectors from './redux/statistic/statistic-selectors';
-import categoriesOperations from './redux/categories/categories-operations';
 
 const RegistrationPage = lazy(() =>
   import(
@@ -57,7 +56,6 @@ export default function App() {
 
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
-    dispatch(categoriesOperations.fetchCategories());
   }, [dispatch]);
 
   const shouldRenderSpinner =
