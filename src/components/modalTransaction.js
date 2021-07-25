@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -10,6 +10,7 @@ import {
   modalTrancactionIsOpen,
   addTrancaction,
 } from '../redux/modaltransaction/modalTransactionOperations';
+import categoriesSelectors from '../redux/categories/categories-selectors';
 import style from './componentsCSS/ModalAddTransaction.module.css';
 import './componentsCSS/checkBox.css';
 
@@ -103,6 +104,10 @@ const CssSelect = withStyles({
 
 export default function ModalAddTransaction() {
   const dispatch = useDispatch();
+  const defaulCategories = useSelector(
+    categoriesSelectors.getDefaultCategories,
+  );
+  const newCategories = useSelector(categoriesSelectors.getNewCategories);
 
   const closeModal = e => {
     dispatch(modalTrancactionIsOpen(false));
@@ -155,7 +160,6 @@ export default function ModalAddTransaction() {
           comment,
         }),
       );
-      // console.log({ checkBox, category, transaction, year, month, day, comment });
       resetForm();
       closeModal();
     },
@@ -255,14 +259,16 @@ export default function ModalAddTransaction() {
                   value=""
                   onChange={handleChange}
                 >
-                  <MenuItem value="Основной">Основной</MenuItem>
-                  <MenuItem value="Еда">Еда</MenuItem>
-                  <MenuItem value="Авто">Авто</MenuItem>
-                  <MenuItem value="Развитие">Развитие</MenuItem>
-                  <MenuItem value="Дети">Дети</MenuItem>
-                  <MenuItem value="Дом">Дом</MenuItem>
-                  <MenuItem value="Образование">Образование</MenuItem>
-                  <MenuItem value="Остальные">Остальные</MenuItem>
+                  {defaulCategories.map(category => (
+                    <MenuItem key={category} value={category}>
+                      {category}
+                    </MenuItem>
+                  ))}
+                  {newCategories.map(category => (
+                    <MenuItem key={category} value={category}>
+                      {category}
+                    </MenuItem>
+                  ))}
                 </TextField>
               </InputAdornment>
             ),
