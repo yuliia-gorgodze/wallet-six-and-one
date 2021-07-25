@@ -5,6 +5,7 @@
   align-items: center;
   padding: 20px 20px 40px !important;
   width: 320px;
+  border-radius: 20px;
 }
 
 .changeList {
@@ -149,7 +150,6 @@
     padding: 40px 60px 60px !important;
     width: 540px;
     height: auto;
-    border-radius: 20px;
   }
 
   .clouseButton {

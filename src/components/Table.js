@@ -8,7 +8,6 @@ import TableRow from '@material-ui/core/TableRow';
 import style from './componentsCSS/Table.module.css';
 import { useSelector } from 'react-redux';
 import statisticSelectors from '../redux/statistic/statistic-selectors';
-import { getBalance } from '../redux/finance/finance-selectors';
 import numberWithSpaces from '../helpers/numberWithSpaces';
 
 let a = {
@@ -83,7 +82,6 @@ let a = {
 export default function TableStatistic({ color }) {
   const result = useSelector(statisticSelectors.getAllTransactions);
 
-  const amount = useSelector(getBalance);
   function transliterate(word) {
     return word
       .split('')
@@ -113,10 +111,6 @@ export default function TableStatistic({ color }) {
 
     return transactionArr;
   }
-
-  // function getFilteredData() {
-  //   return result.transactions;
-  // }
 
   function getFilteredData() {
     var holder = {};

@@ -7,11 +7,17 @@ import {
 } from './finance-actions';
 
 const totalBalance = createReducer(0, {
-  [FETCHBALANCESUCCESS]: (_, { payload }) => payload,
+  [FETCHBALANCESUCCESS]: (_, { payload }) => payload[0].balance,
 });
 
 const error = createReducer('', {
   [FETCHBALANCEERROR]: (_, { payload }) => payload.message,
 });
 
-export const finance = combineReducers({ totalBalance, error });
+const loading = createReducer(false, {
+  [FETCHBALANCEREQUEST]: () => true,
+  [FETCHBALANCESUCCESS]: () => false,
+  [FETCHBALANCEERROR]: () => false,
+});
+
+export const finance = combineReducers({ totalBalance, loading, error });

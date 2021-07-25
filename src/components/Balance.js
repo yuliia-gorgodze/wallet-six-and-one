@@ -17,6 +17,7 @@ export default function Balance() {
   }
 
   const amount = useSelector(getBalance);
+
   return (
     <div className={`${style.balance}`}>
       <h2 className={style.balance__title}>Ваш баланс</h2>

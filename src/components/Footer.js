@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import GroupIcon from '@material-ui/icons/Group';
-import Link from '@material-ui/core/Link';
 import { useDispatch } from 'react-redux';
 import { setModalFooterState } from '../redux/global/global-operations';
 import FooterModal from './FooterModal';

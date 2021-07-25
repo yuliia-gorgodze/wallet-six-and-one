@@ -7,6 +7,8 @@ import {
 } from './modalTransactionActions';
 
 import transactionOperations from '../transactions/transactionOperations';
+import categoriesOperations from '../categories/categories-operations';
+import { fetchBalance } from '../finance/finance-operations';
 import notification from '../../helpers/react-toastify';
 
 export const modalTrancactionIsOpen = modalState => async dispatch => {
@@ -31,6 +33,10 @@ export const addTrancaction = transaction => async dispatch => {
         dispatch(ADD_NEW_TRANSACTION_SUCCES(data.data.data.transaction));
         //update table online
         dispatch(transactionOperations.fetchTransactions());
+        //update categories online
+        dispatch(categoriesOperations.fetchCategories());
+        //update balance online
+        dispatch(fetchBalance());
         notification.sucess('Транзакция успешно добавлена');
       })
       .catch(er => console.log(er));

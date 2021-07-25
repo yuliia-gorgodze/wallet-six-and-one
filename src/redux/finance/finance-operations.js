@@ -8,16 +8,9 @@ import {
 export const fetchBalance = () => async dispatch => {
   dispatch(FETCHBALANCEREQUEST());
   try {
-    const response = await axios.get('/transactions');
-    const data = await response.data;
-    const transactions = await data.data.transactions;
-    if (transactions.length > 0) {
-      const balance = transactions[transactions.length - 1].balance;
-      dispatch(FETCHBALANCESUCCESS(balance));
-    } else {
-      const balance = 0;
-      dispatch(FETCHBALANCESUCCESS(balance));
-    }
+    const response = await axios.get('/transactions?sortByDesk=createdAt');
+
+    dispatch(FETCHBALANCESUCCESS(response.data.data.transactions));
   } catch (error) {
     dispatch(FETCHBALANCEERROR(error));
   }

@@ -21,4 +21,5 @@ const fetchTransactions =
     }
   };
 
+// eslint-disable-next-line
 export default { fetchTransactions };

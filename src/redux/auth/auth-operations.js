@@ -2,6 +2,7 @@ import axios from 'axios';
 import authActions from './auth-actions';
 import notification from '../../helpers/react-toastify';
 import { filteredMounthAndYearsTransactions } from '../statistic/statistic-operations';
+import categoriesOperations from '../categories/categories-operations';
 
 axios.defaults.baseURL =
   'https://fs25on-team7-wallet-backend.herokuapp.com/api';
@@ -43,7 +44,7 @@ const logIn = credentials => async dispatch => {
     token.set(response.data.data.token);
 
     dispatch(authActions.loginSuccess(response.data.data));
-
+    dispatch(categoriesOperations.fetchCategories());
     dispatch(
       filteredMounthAndYearsTransactions({
         month: currentMonth,
@@ -70,7 +71,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
     const response = await axios.get('/users/current');
 
     dispatch(authActions.getCurrentUserSuccess(response.data.data));
-
+    dispatch(categoriesOperations.fetchCategories());
     dispatch(
       filteredMounthAndYearsTransactions({
         month: currentMonth,
