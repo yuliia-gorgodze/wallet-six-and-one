@@ -1,0 +1,32 @@
+.addText::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: -4px;
+  display: inline-block;
+  background-color: var(--dg-button-color);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  box-shadow: 0px 6px 15px rgba(36, 204, 167, 0.5);
+  background-image: url(../../assets/icons/addTransaction.svg);
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
+}
+.addСosts::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: -4px;
+  display: inline-block;
+  background-color: #ff6596;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  box-shadow: 0px 6px 15px rgba(255, 101, 150, 0.5);
+  background-image: url(../../assets/icons/buttonСonsumption.svg);
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
+}

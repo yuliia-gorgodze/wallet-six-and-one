@@ -1,26 +1,17 @@
-
-import { Route, NavLink, Switch} from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 //components
-import Home from '../views/HomePage'
-import RegistrationPage from '../views/RegistrationPage'
-import LoginPage from '../views/LoginPage'
-import DashboardPage from '../views/DashboardPage'
+import routes from '../routes';
+
 const Navigation = () => {
+  return (
+    <>
+      {/* <NavLink to={routes.home}>home</NavLink> */}
+      <NavLink to={routes.home}>home</NavLink>
+      <NavLink to={routes.login}>login</NavLink>
+      <NavLink to={routes.registration}>registration</NavLink>
+    </>
+  );
+};
 
-    return (<> 
-     <NavLink to='/'>home</NavLink>
-     <NavLink to='/dashboard'>dashboard</NavLink>
-     <NavLink to='/login'>login</NavLink>
-     <NavLink to='/registration'>registration</NavLink>
-
-     <Switch>
-    <Route path="/" exact component={Home} />
-      <Route path="/dashboard" component={DashboardPage} />
-      <Route path="/login" component={LoginPage}/>
-      <Route path="/registration" component={RegistrationPage}  />
-      </Switch>
-    </>)
-}
-
-
-export default Navigation
+export default Navigation;

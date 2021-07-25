@@ -1,0 +1,145 @@
+.modalLogoutOverlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity ease-in-out 300ms;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+.modalLogoutOverlay_active {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity ease-in-out 300ms;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.modal__title {
+  font-family: 'Circe-regular';
+  font-size: 17px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.buttonsList {
+  list-style: none;
+  justify-content: center;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.buttonsList > li:first-child {
+  margin-bottom: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .buttonsList {
+    display: flex;
+  }
+  .buttonsList > li:first-child {
+    margin-right: 15px;
+  }
+}
+
+.button {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+  padding: 11px 0;
+  border: 1px solid transparent;
+
+  border-radius: 20px;
+
+  font-family: 'Circe-regular', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background-color 250ms ease-out, color 250ms ease-out;
+
+  cursor: pointer;
+}
+
+.button + .button {
+  margin-top: 20px;
+}
+
+.button__undo {
+  composes: button;
+  background-color: var(--dg-button-color);
+  color: var(--bg-color-secondary);
+}
+
+.button__undo:hover,
+.button__undo:focus {
+  background-color: var(--bg-color-secondary);
+  color: var(--dg-button-color);
+  border: 1px solid var(--dg-button-color);
+}
+
+.button__submit {
+  composes: button;
+  color: var(--bg-form-privat);
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--bg-form-privat);
+}
+
+.button__submit:hover,
+.button__submit:focus {
+  background-color: var(--bg-form-privat);
+  color: var(--bg-color-secondary);
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    padding: 20px;
+  }
+
+  .modal__title {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .modal__button {
+    font-size: 17px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .modal {
+    padding: 30px;
+  }
+  .modal__title {
+    margin-bottom: 25px;
+    font-size: 25px;
+  }
+
+  .modal__button {
+    font-size: 22px;
+  }
+}

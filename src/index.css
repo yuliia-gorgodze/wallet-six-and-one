@@ -1,55 +1,117 @@
 :root {
-	--primary-color: #000000;
-	--text-grey-color: #BDBDBD;
-	--dg-button-color: #24CCA7;
-	--text-pink-color: #FF6596;
-	--bg-color-primary:  rgba(255, 255, 255, 0.4);
-	--bg-color-secondary: #FFFFFF;
-	--bg-form-privat: #4A56E2;
+  --primary-color: #000000;
+  --text-grey-color: rgb(189, 189, 189);
+  --dg-button-color: #24cca7;
+  --text-pink-color: #ff6596;
+  --bg-color-primary: rgba(255, 255, 255, 0.4);
+  --bg-color-secondary: #ffffff;
+  --bg-form-privat: #4a56e2;
+  --bg-form-privzldjkat: #b98bd4;
+}
+
+@font-face {
+  font-family: 'Circe-regular';
+  src: url('../src/fonts/Circe-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Circe-bold';
+  src: url('../src/fonts/Circe-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Poppins-Bold';
+  src: url('../src/fonts/Poppins-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Poppins-Regular';
+  src: url('../src/fonts/Poppins-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+.container {
+  width: 280px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 688px;
   }
-
-
-
-@font-face {
-	font-family: 'Circe-regular';
-	src:url('../src/fonts/Circe-Regular.ttf');
-	font-weight: normal;
-	font-style: normal;
 }
 
-@font-face {
-	font-family: 'Circe-bold';
-	src:url('../src/fonts/Circe-Bold.ttf');
-	font-weight: bold;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Poppins-Bold';
-	src:url('../src/fonts/Poppins-Bold.ttf');
-	font-weight: bold;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Poppins-Regular';
-	src:url('../src/fonts/Poppins-Regular.ttf');
-	font-weight: normal;
-	font-style: normal;
+.sectionPage {
+  padding-top: 30px;
+  padding-bottom: 100px;
+
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.4)
+    ),
+    url('./assets/images/ellipse-2.png'), url('./assets/images/ellipse-1.png');
+
+  background-position: 0, top 0 right 0, bottom 0 left 0;
+  background-repeat: no-repeat;
 }
 
-   a{
-	   text-decoration: none;
-   }
-  ul {
-	list-style: none;
-	padding: 0;
+.mainPage {
+  display: flex;
+  /* align-items: flex-start; */
+}
+
+@media screen and (max-width: 1279px) and (min-width: 768px) {
+  .mainPage {
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
   }
+}
 
-  h1,
-  h2,
-  h3 {
-	margin: 0;
-
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 1110px;
   }
+  .mainPage {
+    display: flex;
+    justify-content: space-around;
+    /* align-items: flex-start; */
+  }
+  .sectionPage {
+    padding-top: 110px;
+    min-height: 100vh;
+  }
+}
 
+@media screen and (max-width: 767px) {
+  .mainPage {
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+  }
+}
 
-
+body {
+  position: relative;
+  background-color: rgb(241, 243, 248);
+}

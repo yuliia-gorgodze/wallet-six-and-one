@@ -1,0 +1,128 @@
+.container {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 40px 10px;
+  border-radius: 20px;
+  background-color: var(--bg-color-secondary);
+}
+
+@media screen and (min-width: 350px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 60px 65px;
+  }
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.logo__icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: sub;
+}
+
+@media screen and (min-width: 1280px) {
+  .logo__icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.logo__text {
+  margin-left: 15px;
+  font-family: 'Poppins-Bold', sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+  .logo__text {
+    margin-left: 20px;
+    font-size: 30px;
+  }
+}
+
+.form__icon {
+  color: var(--text-grey-color);
+}
+
+.container__button {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container__button {
+    margin-top: 10px;
+  }
+}
+
+.button {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+  padding: 11px 0;
+  border: 1px solid transparent;
+
+  border-radius: 20px;
+
+  font-family: 'Circe-regular', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background-color 250ms ease-out, color 250ms ease-out;
+
+  cursor: pointer;
+}
+
+.button + .button {
+  margin-top: 20px;
+}
+
+.button__submit {
+  composes: button;
+  background-color: var(--dg-button-color);
+  color: var(--bg-color-secondary);
+}
+
+.button__submit:hover,
+.button__submit:focus {
+  background-color: var(--bg-color-secondary);
+  color: var(--dg-button-color);
+  border: 1px solid var(--dg-button-color);
+}
+
+.button__redirect {
+  composes: button;
+  color: var(--bg-form-privat);
+  background-color: var(--bg-color-secondary);
+  border: 1px solid var(--bg-form-privat);
+}
+
+.button__redirect:hover,
+.button__redirect:focus {
+  background-color: var(--bg-form-privat);
+  color: var(--bg-color-secondary);
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    width: 300px;
+  }
+}

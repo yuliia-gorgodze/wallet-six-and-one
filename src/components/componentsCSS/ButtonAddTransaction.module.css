@@ -1,0 +1,34 @@
+.buttonAddTransaction {
+  display: block;
+  position: fixed;
+  right: 20px;
+  bottom: 30px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--dg-button-color);
+  background-image: url(../../assets/icons/addTransaction.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2;
+  transition: transform 250ms ease-out;
+  cursor: pointer;
+}
+.buttonAddTransaction:hover {
+  transform: scale(1.5);
+}
+
+@media screen and (min-width: 768px) {
+  .buttonAddTransaction {
+    right: 40px;
+    bottom: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .buttonAddTransaction {
+    right: 35px;
+    bottom: 40px;
+  }
+}

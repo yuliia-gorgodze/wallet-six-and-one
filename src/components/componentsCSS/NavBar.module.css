@@ -1,0 +1,74 @@
+@media screen and (max-width: 767px) {
+  .navBar {
+    text-align: center;
+  }
+
+  .list {
+    max-width: 180px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .link {
+    padding: 15px;
+    background-color: rgb(110, 120, 231);
+    border-radius: 8px;
+    color: white;
+  }
+
+  .activeLink {
+    background-color: rgb(74, 86, 226);
+    box-shadow: 0 0 14px -4px #fff;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 1279px) and (min-width: 768px) {
+  .navBar {
+    min-width: 300px;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .icon {
+    background-color: rgb(74, 86, 226);
+    color: white;
+    border-radius: 4px;
+    box-shadow: 4px 4px 8px 0px rgba(110, 120, 231, 0.2);
+    padding: 2px;
+    margin-right: 15px;
+  }
+
+  .text {
+    color: black;
+  }
+}
+
+.link {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 27px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.link:hover {
+  color: aqua;
+}
+
+.activeLink {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 27px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  margin-left: 10px;
+}

@@ -1,0 +1,42 @@
+.balance {
+  padding-top: 8px;
+  padding-left: 30px;
+  background-color: #ffffff;
+  border-radius: 30px;
+}
+
+.balance__title {
+  font-family: 'Circe-regular';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: #a6a6a6;
+}
+
+.balance__amount {
+  font-family: 'Poppins-Bold';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 45px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+@media screen and (min-width: 768px) {
+  .balance {
+    padding-left: 40px;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .balance {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+  }
+}
