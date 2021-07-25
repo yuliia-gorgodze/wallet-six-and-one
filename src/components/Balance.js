@@ -1,10 +1,14 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import transactionSelectors from '../redux/transactions/transactionSelectors';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchBalance } from '../redux/finance/finance-operations';
+import { getBalance } from '../redux/finance/finance-selectors';
 import style from './componentsCSS/Balance.module.css';
 
 export default function Balance() {
-  const allTransactions = useSelector(transactionSelectors.getAllTransactions);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchBalance());
+  }, [dispatch]);
 
   function numberWithSpaces(x) {
     let parts = x.toString().split('.');
@@ -12,10 +16,7 @@ export default function Balance() {
     return parts.join('.');
   }
 
-  const amount =
-    allTransactions && allTransactions.transactions
-      ? allTransactions.transactions[0].balance
-      : 0;
+  const amount = useSelector(getBalance);
 
   return (
     <div className={`${style.balance}`}>

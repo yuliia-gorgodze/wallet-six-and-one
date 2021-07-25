@@ -11,6 +11,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { global } from './global/global-reducer';
+import { finance } from './finance/finance-reducer';
 import { trasaction } from './modaltransaction/modalTransactionReducer';
 import authReducer from './auth/auth-reducer';
 import exchangeReducer from './exchange/exchangeReducer';
@@ -30,6 +31,7 @@ const store = configureStore({
   reducer: {
     trasaction,
     global,
+    finance,
     auth: persistedAuthReducer,
     exchange: exchangeReducer,
     transactions: transactionReducer,

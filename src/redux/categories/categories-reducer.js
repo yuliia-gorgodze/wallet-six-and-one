@@ -4,7 +4,6 @@ import categoriesActions from './categories-actions';
 
 const initialUserState = {
   categoriesDefault: [
-    'Доходы',
     'Основной',
     'Еда',
     'Авто',
@@ -22,7 +21,7 @@ const allCategories = createReducer(initialUserState, {
     const defaulCategories = state.categoriesDefault;
     const backCategories = payload.map(el => el.category);
     const newCategories = backCategories.filter(
-      c => defaulCategories.indexOf(c) === -1,
+      c => defaulCategories.indexOf(c) === -1 && c !== 'Доходы',
     );
     return {
       ...state,
